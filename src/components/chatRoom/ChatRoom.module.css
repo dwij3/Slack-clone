@@ -1,0 +1,7 @@
+.chatRoom{
+    display: flex;
+    flex-direction: column;
+    background-color: #1b1d21;
+    padding:10px;
+    flex:1
+}
