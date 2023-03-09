@@ -1,11 +1,11 @@
 import styles from './SideBar.module.css';
-import FriendList from './components/friendList';
+import TeamMateList from './components/teamMateList';
 import SideBarHeader from './components/sideBarHeader/SideBarHeader';
 const SideBar = () => {
     return (
         <div className={styles.sideBar}>
             <SideBarHeader />
-            <FriendList/>
+            <TeamMateList/>
         </div>
     )
 }

@@ -1,11 +1,12 @@
 .sideBarHeader{
     border: 1px solid #2B2A2F;
+    border-right: none;
     padding:10px;
     height: 35px;
-
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .sprinklrLogo{

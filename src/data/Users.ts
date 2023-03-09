@@ -3,7 +3,7 @@ type Users = {
         id:number,
         name:string,
         photo:string,
-        directMessages:number[]
+        chatRoomId:number[]
     }
 }
 
@@ -12,28 +12,28 @@ export const users:Users = {
         id:1,
         name:"Dwij Bhanderi",
         photo:"https://randomuser.me/api/portraits/men/22.jpg",
-        directMessages: [1,2,3,4,6,9,10]
+        chatRoomId: [1,2,3,4,5]
     },2:{
         id:2,
         name:"Dhairya Rupala",
         photo:"https://randomuser.me/api/portraits/men/1.jpg",
-        directMessages: [5,7,8]
+        chatRoomId: [1,2]
 
     },3:{
         id:3,
         name:"Neel Patel",
         photo:"https://randomuser.me/api/portraits/men/2.jpg",
-        directMessages: []
+        chatRoomId: [3]
     },4:{
         id:4,
         name:"Heet Mistry",
         photo:"https://randomuser.me/api/portraits/men/3.jpg",
-        directMessages: []
+        chatRoomId: [4]
     },5:{
         id:5,
         name:"Jay Patel",
-        photo:"https://randomuser.me/api/portraits/men/3.jpg",
-        directMessages: []
+        photo:"https://randomuser.me/api/portraits/men/4.jpg",
+        chatRoomId: [5]
     }
 };
 

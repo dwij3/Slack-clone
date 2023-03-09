@@ -1,0 +1,22 @@
+.teamMateDetail{
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    height: 28px;
+    width: 88%;
+    margin: 1px;
+    padding:0px 10px;
+    /* margin-right: 5px; */
+}
+
+.teamMateDetail:hover{
+    background-color: #27242C;
+    cursor: pointer;
+}
+
+.teamMateName{
+    font-size: 15px;
+    line-height: 28px;
+    padding: 1px 10px;
+    color: #ABACAD;
+}

@@ -3,6 +3,10 @@
     margin: 10px 0;
 }
 
+.message:hover{
+    background-color: #d8eef614;;
+}
+
 .messageDetails{
     flex: 1;
 

@@ -1,29 +1,33 @@
 .addMessage{
-    background-color: #222529;
-    border: 1px solid #2B2A2F;
-    /* padding: 10px; */
-    min-height: 55px;
-
+    background-color: #1b1d21;
+    min-height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .inputField{
-    height: 90%;
+    height: 95%;
     width: 90%;
-    border: 1px solid #565856;
+    /* border: 1px solid #565856; */
+    border-radius: 15px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
 }
 
 .input{
-    width:95%;
-    height: 80%;
+    width: 96%;
+    padding:10px;
+    background-color: transparent;
     border: none;
+    color: #D1D2D3;
+    font-size: 15px;
+    border: 3px solid #565856;
+    border-radius: 10px;
 }
 
-inputBox:hover{
+input:focus{
     outline: none;
 }
