@@ -1,0 +1,49 @@
+.friendDetail{
+
+    /* just for dummy data */
+    margin-top: auto;
+
+    height: 95px;
+    width: 90%;
+    background: transparent;
+    font-size: 15px;
+    line-height: 22px;
+    color: #D1D2D3;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.detail{
+    display: flex;
+}
+
+.friendName{
+    font-size: 15px;
+    margin-left: 20px;
+    color:#D1D2D3;
+    height: auto;
+    width:auto;
+    cursor: pointer;
+}
+
+.friendNameContainer{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commonMessage{
+    height: 23px;
+    width: auto;
+    color: #abacad;
+    margin-top: 10px;
+    margin-bottom: 16px;
+}
+
+.highlight{
+    color: #40B3E4;
+    background-color: #1d2a34;
+    padding: 0 4px;
+}

@@ -2,4 +2,14 @@
     border: 1px solid #2B2A2F;
     padding:10px;
     height: 35px;
+
+    display: flex;
+}
+
+.userName{
+    font-size: 18px;    
+    font-weight: 600;
+    line-height: 30px;
+    color: #c1c7cd;
+    margin-left: 15px;
 }

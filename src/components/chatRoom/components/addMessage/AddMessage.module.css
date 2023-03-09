@@ -1,6 +1,29 @@
 .addMessage{
     background-color: #222529;
     border: 1px solid #2B2A2F;
-    padding: 10px;
-    min-height: 35px;
+    /* padding: 10px; */
+    min-height: 55px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputField{
+    height: 90%;
+    width: 90%;
+    border: 1px solid #565856;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input{
+    width:95%;
+    height: 80%;
+    border: none;
+}
+
+inputBox:hover{
+    outline: none;
 }
