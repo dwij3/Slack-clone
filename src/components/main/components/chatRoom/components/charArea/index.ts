@@ -1,1 +1,1 @@
-export {default} from './chatArea';
+export { default } from "./chatArea";

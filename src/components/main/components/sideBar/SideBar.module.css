@@ -1,7 +1,7 @@
-.sideBar{
-     background-color: #19171d;
-    min-width: 350px;
-    border: 1 px solid #2b2a2f;
-    display: flex;
-    flex-direction: column;
+.sideBar {
+  background-color: #19171d;
+  min-width: 350px;
+  border: 1 px solid #2b2a2f;
+  display: flex;
+  flex-direction: column;
 }

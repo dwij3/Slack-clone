@@ -1,3 +1,3 @@
-export type id={
-    teamMateId:number
-}
+export type id = {
+  activeTeamMateId: number;
+};

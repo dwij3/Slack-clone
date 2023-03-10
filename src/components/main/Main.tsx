@@ -4,16 +4,15 @@ import ChatRoom from "./components/chatRoom/ChatRoom";
 import { useCallback, useState } from "react";
 
 const Main = () => {
-  const [teamMateId, setTeamMateId] = useState(1);
+  const [activeTeamMateId, setActiveTeamMateId] = useState<number>(1);
   const handleClick = useCallback((updatedTeamMateId: number) => {
-    setTeamMateId(updatedTeamMateId);
+    setActiveTeamMateId(updatedTeamMateId);
   }, []);
-
 
   return (
     <div className={styles.Main}>
-      <SideBar onClick={handleClick} teamMateId={teamMateId}/>
-      <ChatRoom teamMateId={teamMateId} />
+      <SideBar onClick={handleClick} activeTeamMateId={activeTeamMateId} />
+      <ChatRoom activeTeamMateId={activeTeamMateId} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
-export type ID = {
-    teamMateID:number,
-    onClick:any
-}
+export type TeamMateDetailProps = {
+  teamMateID: number;
+  onClick: any;
+  activeTeamMateId: number;
+};

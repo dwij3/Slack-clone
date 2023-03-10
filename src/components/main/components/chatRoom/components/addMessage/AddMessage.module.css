@@ -1,46 +1,46 @@
-.addMessage{
-    background-color: #1b1d21;
-    min-height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.addMessage {
+  background-color: #1b1d21;
+  min-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.inputField{
-    height: 95%;
-    width: 90%;
-    /* border: 1px solid #565856; */
-    border-radius: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;    
+.inputField {
+  height: 95%;
+  width: 90%;
+  /* border: 1px solid #565856; */
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-input{
-    width: 90%;
-    height: auto;
-    word-wrap:break-word;
-    word-break: break-all;
-    padding:10px;
-    background-color: transparent;
-    border: none;
-    color: #D1D2D3;
-    font-size: 15px;
-    border: 3px solid #565856;
-    border-radius: 10px;
-    padding-right: 40px;
+input {
+  width: 90%;
+  height: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  color: #d1d2d3;
+  font-size: 15px;
+  border: 3px solid #565856;
+  border-radius: 10px;
+  padding-right: 40px;
 }
 
-input:focus{
-    outline: none;
+input:focus {
+  outline: none;
 }
 
-.submitButton{
-    background: none;
-    margin: -34px;
+.submitButton {
+  background: none;
+  margin: -34px;
 }
 
-.submitButton:hover{
-    cursor: pointer;
+.submitButton:hover {
+  cursor: pointer;
 }

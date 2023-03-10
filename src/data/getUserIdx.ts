@@ -1,8 +1,7 @@
-import {users} from './Users';
+import { users } from "./Users";
 
-
-const getUserIdx = (userId:number):number => {
-    return users.findIndex((user) => user.id===userId);
+const getUserIdx = (userId: number): number => {
+  return users.findIndex((user) => user.id === userId);
 };
 
 export default getUserIdx;

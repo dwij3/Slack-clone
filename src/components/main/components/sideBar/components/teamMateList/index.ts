@@ -1,1 +1,1 @@
-export {default} from './TeamMateList';
+export { default } from "./TeamMateList";

@@ -1,4 +1,4 @@
-export type AddMessageProps= {
-    teamMateId:number,
-    onAction:any
-}
+export type AddMessageProps = {
+  activeTeamMateId: number;
+  onAction: any;
+};

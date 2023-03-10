@@ -1,3 +1,3 @@
-export type ChatRoomProps ={
-    teamMateId:number
-} 
+export type ChatRoomProps = {
+  activeTeamMateId: number;
+};

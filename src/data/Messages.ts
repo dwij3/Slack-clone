@@ -1,7 +1,7 @@
 import getDate from "./getDate";
 
 type message = {
-  id: number|string;
+  id: number | string;
   from: number;
   to: number;
   date: string;

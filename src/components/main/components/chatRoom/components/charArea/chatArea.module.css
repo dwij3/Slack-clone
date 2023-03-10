@@ -1,20 +1,19 @@
-.displayMessage{
-    padding: 10px 10px 10px 20px;   
-    flex: 1;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    height: 100px;
-    position: relative;
+.displayMessage {
+  padding: 10px 10px 10px 20px;
+  flex: 1;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 100px;
+  position: relative;
 }
-
 
 /* To make scrollbar hidden */
 ::-webkit-scrollbar {
-    width: 12px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    display: none;
+  display: none;
 }

@@ -1,35 +1,35 @@
-.teamMateDetail{
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    height: 28px;
-    width: 88%;
-    margin: 1px;
-    padding:0px 10px;
-    /* margin-right: 5px; */
+.teamMateDetail {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  height: 28px;
+  width: 88%;
+  margin: 1px;
+  padding: 0px 10px;
+  /* margin-right: 5px; */
 }
 
-.teamMateDetail:hover{
-    background-color: #27242C;
-    cursor: pointer;
+.teamMateDetail:hover {
+  background-color: #27242c;
+  cursor: pointer;
 }
 
-.teamMateName{
-    font-size: 15px;
-    line-height: 28px;
-    padding: 1px 10px;
-    color: #ABACAD;
+.teamMateName {
+  font-size: 15px;
+  line-height: 28px;
+  padding: 1px 10px;
+  color: #abacad;
 }
 
-.highlight{
-    background-color: #1263a3;
+.highlight {
+  background-color: #1263a3;
 }
 
-.highlight:hover{
-    background-color: #1263a3;
+.highlight:hover {
+  background-color: #1263a3;
 }
 
-.user{
-    font-size: 13px;
-    color: #ABACAD;
+.user {
+  font-size: 13px;
+  color: #abacad;
 }

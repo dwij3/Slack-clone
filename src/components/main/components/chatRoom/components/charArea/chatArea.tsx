@@ -1,41 +1,41 @@
-import styles from './chatArea.module.css';
-import TeamMateDetail from './components/teamMateDetail/TeamMateDetail';
-import Message from './components/message/Message';
-import {ID } from './type';
-import { useUserId } from '../../../../../../hooks/UserContext';
-import { useEffect, useRef } from 'react';
+import styles from "./chatArea.module.css";
+import TeamMateIntro from "./components/teamMateIntro/TeamMateIntro";
+import Message from "./components/message/Message";
+import { ChatAreaProps, MESSAGE } from "./type";
+import { useUserId } from "../../../../../../hooks/UserContext";
+import { useEffect, useRef } from "react";
 
+const ChatArea = ({ activeTeamMateId, filterMessage }: ChatAreaProps) => {
+  const lastMessageRef = useRef<HTMLDivElement>(null);
 
-const ChatArea = ({teamMateId , filterMessage}:ID) => {
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView();
+    }
+  });
 
-    let userId = useUserId();
+  let userId = useUserId();
+  const conversation = filterMessage(userId, activeTeamMateId);
+  return (
+    <div className={styles.displayMessage}>
+      <TeamMateIntro activeTeamMateId={activeTeamMateId} />
+      {conversation.map(
+        (message: MESSAGE, idx: number, conversation: MESSAGE[]) => {
+          if (idx === conversation.length - 1) {
+            return (
+              <Message
+                key={message.id}
+                message={message}
+                lastMessageRef={lastMessageRef}
+              />
+            );
+          }
 
-    const lastMessageRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if(lastMessageRef.current){
-            lastMessageRef.current.scrollIntoView();
+          return <Message key={message.id} message={message} />;
         }
-    });
-    
-    
-    const conversation = filterMessage(userId , teamMateId);
-    console.log(conversation);
-    return (
-        <div className={styles.displayMessage}>
-            <TeamMateDetail teamMateId={teamMateId}/>
-            {
-                conversation.map((message:any,idx:number,conversation:any) => {
-                    if(idx === conversation.length-1){
-                        console.log(idx);
-                        return <Message key={message.id} message={message} MyRef={lastMessageRef}/>
-                    }
-                   
-                    return <Message key={message.id} message={message} />
-                })
-            } 
-        </div>
-    )
-}
+      )}
+    </div>
+  );
+};
 
 export default ChatArea;

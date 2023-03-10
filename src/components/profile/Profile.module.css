@@ -1,7 +1,7 @@
-.header{
-    height: 44px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 15px;
+.header {
+  height: 44px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 15px;
 }

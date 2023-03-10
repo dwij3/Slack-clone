@@ -1,1 +1,1 @@
-export {default} from './TeamMateDetail';
+export { default } from "./TeamMateDetail";
