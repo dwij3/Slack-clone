@@ -38,8 +38,9 @@
     height: 23px;
     width: auto;
     color: #abacad;
-    margin-top: 10px;
-    margin-bottom: 16px;
+     margin: 10px 0px; 
+     margin-bottom: 20px;
+
 }
 
 .highlight{

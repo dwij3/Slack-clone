@@ -6,7 +6,7 @@ import {users} from '../../../../data/Users';
 import getUserIdx from '../../../../data/getUserIdx';
 
 
-const SideBar = ({onClick}:any) => {
+const SideBar = ({onClick , teamMateId}:any) => {
 
     const userId = useUserId();
     const userIdx = getUserIdx(userId);
@@ -14,7 +14,7 @@ const SideBar = ({onClick}:any) => {
     return (
         <div className={styles.sideBar}>
             <SideBarHeader />
-            <TeamMateList TeamMateIds={teamMateIds} onClick={onClick}/>
+            <TeamMateList TeamMateIds={teamMateIds} onClick={onClick} activeTeamMateId={teamMateId}/>
         </div>
     )
 }

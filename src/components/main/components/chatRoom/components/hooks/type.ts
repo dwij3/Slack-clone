@@ -1,7 +1,7 @@
 export type Message = {
-    id:number,
+    id:number|string,
     from:number,
     to:number,
-    Date:string,
+    date:string,
     content:string
 }

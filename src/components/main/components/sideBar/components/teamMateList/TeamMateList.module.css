@@ -10,9 +10,12 @@
 }
 
 .collapse{
+    height: 30px;
     margin-bottom: 8px;
     margin-left: 5px;
     user-select: none;  
+    display: flex;
+    align-items: center;
 }
 
 .collapseIcon{
@@ -21,7 +24,9 @@
     background-color: transparent;
     color: #D1D2D3;
     font-size: 15px;
-    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .collapseIcon:hover{
@@ -35,4 +40,8 @@
 
 .messageTitle:hover{
     background-color: #27242C;
+}
+
+.transform{
+    transform: matrix(0,1,-1,0,0,0);
 }

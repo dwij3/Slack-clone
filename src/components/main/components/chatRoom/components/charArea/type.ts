@@ -1,5 +1,6 @@
 export type ID = {
     teamMateId:number;
+    filterMessage:any
 }
 
 export type MESSAGE = {

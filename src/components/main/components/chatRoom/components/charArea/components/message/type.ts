@@ -1,3 +1,3 @@
 export type messageId = {
-    messageId:number
+    messageId:number|string
 } 

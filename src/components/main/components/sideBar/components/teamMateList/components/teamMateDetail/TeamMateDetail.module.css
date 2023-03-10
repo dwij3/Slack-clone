@@ -20,3 +20,16 @@
     padding: 1px 10px;
     color: #ABACAD;
 }
+
+.highlight{
+    background-color: #1263a3;
+}
+
+.highlight:hover{
+    background-color: #1263a3;
+}
+
+.user{
+    font-size: 13px;
+    color: #ABACAD;
+}

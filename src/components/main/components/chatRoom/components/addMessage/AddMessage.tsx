@@ -1,44 +1,50 @@
 import styles from "./AddMessage.module.css";
 import { useState, useCallback } from "react";
-import useMessages from "../hooks/useMessages";
 import { ACTION } from "../../../../../../constants";
 import { AddMessageProps } from "./type";
 import { useUserId } from "../../../../../../hooks/UserContext";
-
-const AddMessage = ({ teamMateId }: AddMessageProps) => {
+import getDate from "../../../../../../data/getDate";
+import Avatar from "../../../../../avatar/Avatar";
+const AddMessage = ({ teamMateId, onAction }: AddMessageProps) => {
   const userId = useUserId();
   const [message, setMessage] = useState("");
-  const { onAction } = useMessages();
-  const handleClick = useCallback(() => {
-    onAction({
-      type: ACTION.ADD_MESSAGE,
-      newMessage: {
-        id: crypto.randomUUID(),
-        from: userId,
-        to: teamMateId,
-        content: message,
-        date: new Date(),
-      },
-      userId: userId,
-      teamMateId: teamMateId,
-    });
-  }, [message, onAction, teamMateId, userId]);
 
   const handleChange = useCallback((e: any) => {
     setMessage(e.target.value);
   }, []);
 
+  const handleKeyDown = useCallback((e:any) => {
+    if(e.key === "Enter" || e.type==='click'){
+      onAction({
+        type: ACTION.ADD_MESSAGE,
+        newMessage: {
+          id: crypto.randomUUID(),
+          from: userId,
+          to: teamMateId,
+          content: message,
+          date: getDate(),
+        },
+        userId: userId,
+        teamMateId: teamMateId,
+      });
+      setMessage("");
+    }
+  },[message, onAction, teamMateId, userId]);
+
   return (
     <div className={styles.addMessage}>
       <div className={styles.inputField}>
         <input
-          type="text"
+        type="text"
           value={message}
           className={styles.input}
           placeholder="Message here"
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
-        <button onClick={handleClick}>Add</button>
+        <span onClick={handleKeyDown} className={styles.submitButton}>
+          <Avatar src="https://w7.pngwing.com/pngs/818/816/png-transparent-paper-plane-airplane-computer-icons-send-angle-ribbon-rectangle-thumbnail.png" height="20px" width="23px"/>
+        </span>
       </div>
     </div>
   );

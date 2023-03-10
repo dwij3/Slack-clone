@@ -1,6 +1,6 @@
 .addMessage{
     background-color: #1b1d21;
-    min-height: 70px;
+    min-height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,13 +12,16 @@
     /* border: 1px solid #565856; */
     border-radius: 15px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;    
 }
 
-.input{
-    width: 96%;
+input{
+    width: 90%;
+    height: auto;
+    word-wrap:break-word;
+    word-break: break-all;
     padding:10px;
     background-color: transparent;
     border: none;
@@ -26,8 +29,18 @@
     font-size: 15px;
     border: 3px solid #565856;
     border-radius: 10px;
+    padding-right: 40px;
 }
 
 input:focus{
     outline: none;
+}
+
+.submitButton{
+    background: none;
+    margin: -34px;
+}
+
+.submitButton:hover{
+    cursor: pointer;
 }

@@ -12,7 +12,7 @@ const Main = () => {
 
   return (
     <div className={styles.Main}>
-      <SideBar onClick={handleClick} />
+      <SideBar onClick={handleClick} teamMateId={teamMateId}/>
       <ChatRoom teamMateId={teamMateId} />
     </div>
   );
