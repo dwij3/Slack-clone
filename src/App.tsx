@@ -6,7 +6,7 @@ import Profile from "./components/profile";
 
 function App() {
   return (
-    <UserContextProvider>
+    <UserContextProvider value={1}>
       <div className="App">
         <Profile />
         <Main />

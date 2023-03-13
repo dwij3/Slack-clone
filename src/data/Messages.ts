@@ -7,7 +7,7 @@ type message = {
   date: string;
   content: string;
 };
-
+console.log("message type");
 export const messages: message[] = [
   {
     id: 1,
@@ -78,5 +78,19 @@ export const messages: message[] = [
     to: 2,
     date: getDate(),
     content: "Bye!",
+  },
+  {
+    id: 11,
+    from: 2,
+    to: 3,
+    date: getDate(),
+    content: "Hey Neel!",
+  },
+  {
+    id: 12,
+    from: 2,
+    to: 4,
+    date: getDate(),
+    content: "Hey Heet!",
   },
 ];

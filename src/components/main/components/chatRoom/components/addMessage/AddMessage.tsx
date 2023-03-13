@@ -15,7 +15,7 @@ const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
   }, []);
 
   const handleAddMessage = useCallback(
-    (e: any) => {
+    (e:any) => {
       if ((e.key === "Enter" || e.type === "click") && message.length) {
         onAction({
           type: ACTION.ADD_MESSAGE,
@@ -44,9 +44,9 @@ const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
           className={styles.input}
           placeholder="Message here"
           onChange={handleChange}
-          onKeyDown={handleAddMessage}
+          onKeyDown={(e) => handleAddMessage(e)}
         />
-        <span onClick={handleAddMessage} className={styles.submitButton}>
+        <span onClick={(e) => handleAddMessage(e)} className={styles.submitButton}>
           <Avatar
             src="https://w7.pngwing.com/pngs/818/816/png-transparent-paper-plane-airplane-computer-icons-send-angle-ribbon-rectangle-thumbnail.png"
             height="20px"

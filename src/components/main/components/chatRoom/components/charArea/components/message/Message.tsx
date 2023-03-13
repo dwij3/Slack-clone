@@ -3,26 +3,16 @@ import Avatar from "../../../../../../../avatar/Avatar";
 import { users } from "../../../../../../../../data/Users";
 import getUserIdx from "../../../../../../../../data/getUserIdx";
 
-const formatAMPM = (date: Date) => {
-  let hours = date.getHours();
-  let minutes: string | number = date.getMinutes();
-  let ampm = hours >= 12 ? "pm" : "am";
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  var strTime = hours + ":" + minutes + " " + ampm;
-  return strTime;
-};
+
 
 const Message = ({ message, lastMessageRef }: any) => {
-  const date = new Date();
-  const currentTime = formatAMPM(date);
 
   const ownerId: number = message.from;
   const ownerIdx: number | string = getUserIdx(ownerId);
   const ownerImage = users[ownerIdx].photo;
   const ownerName = users[ownerIdx].name;
   const content: string = message.content;
+  const currentTime = message.date;
 
   return (
     <div className={styles.message} ref={lastMessageRef}>

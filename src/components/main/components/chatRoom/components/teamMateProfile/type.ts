@@ -1,3 +1,3 @@
-export type id = {
+export type TeamMateProfileProps = {
   activeTeamMateId: number;
 };

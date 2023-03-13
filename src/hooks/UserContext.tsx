@@ -13,8 +13,8 @@ export const useUserId = (): number => {
   }
 };
 
-const UserContextProvider = ({ children }: childrenProps) => {
-  return <UserContext.Provider value={1}>{children}</UserContext.Provider>;
+const UserContextProvider = ({ children, value }: childrenProps) => {
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export default UserContextProvider;

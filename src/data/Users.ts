@@ -1,12 +1,11 @@
-type userDetail = {
+type UserDetail = {
   id: number;
   name: string;
   photo: string;
   teamMateId: number[];
 };
 
-type Users = userDetail[];
-export const users: Users = [
+export const users: UserDetail[] = [
   {
     id: 1,
     name: "Dwij Bhanderi",
@@ -17,7 +16,7 @@ export const users: Users = [
     id: 2,
     name: "Dhairya Rupala",
     photo: "https://randomuser.me/api/portraits/men/1.jpg",
-    teamMateId: [1, 2],
+    teamMateId: [1, 2, 3, 4],
   },
   {
     id: 3,
