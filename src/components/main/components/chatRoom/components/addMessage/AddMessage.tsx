@@ -2,7 +2,7 @@
 import styles from "./AddMessage.module.css";
 
 //hooks
-import { useState, useCallback, MouseEvent, KeyboardEvent } from "react";
+import { useState, useCallback, MouseEvent, KeyboardEvent, ChangeEvent } from "react";
 import { useUserId } from "../../../../../../hooks/UserContext";
 
 //constant
@@ -18,7 +18,7 @@ const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
   const userId = useUserId();
   const [message, setMessage] = useState("");
 
-  const handleChange = useCallback((e: any) => {
+  const handleChange = useCallback((e:ChangeEvent <HTMLInputElement>) => {
     setMessage(e.target.value);
   }, []);
 
@@ -53,10 +53,10 @@ const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
           className={styles.input}
           placeholder="Message here"
           onChange={handleChange}
-          onKeyDown={(e) => handleAddMessage(e)}
+          onKeyDown={handleAddMessage}
         />
         <span
-          onClick={(e) => handleAddMessage(e)}
+          onClick={ handleAddMessage}
           className={styles.submitButton}
         >
           <Avatar

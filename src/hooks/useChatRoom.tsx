@@ -17,7 +17,6 @@ const useChatRoom = (userId: number, teamMateId: number) => {
         messageIds: [...chatRoom.messageIds, newMessage],
       };
     });
-    console.log(newMessage);
 
     //call backEnd
   }, []);
