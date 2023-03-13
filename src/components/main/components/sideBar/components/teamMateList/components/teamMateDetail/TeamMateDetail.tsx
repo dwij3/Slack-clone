@@ -1,19 +1,28 @@
+//style
 import styles from "./TeamMateDetail.module.css";
-import { users } from "../../../../../../../../data/Users";
-import Avatar from "../../../../../../../avatar/Avatar";
-import { useCallback } from "react";
-import getUserIdx from "../../../../../../../../data/getUserIdx";
-import { useUserId } from "../../../../../../../../hooks/UserContext";
+
+//type
 import { TeamMateDetailProps } from "./type";
+
+//component
+import Avatar from "../../../../../../../avatar/Avatar";
+
+//hooks
+import { useCallback } from "react";
+import { useUserId } from "../../../../../../../../hooks/UserContext";
+import useTeamMates from "../../../../../../../../hooks/useTeamMates";
 
 const TeamMateDetail = ({
   teamMateID,
   onClick,
   activeTeamMateId,
 }: TeamMateDetailProps) => {
-  const teamMateIdx = getUserIdx(teamMateID);
-  const teamMateImage = users[teamMateIdx].photo;
-  const teamMateName = users[teamMateIdx].name;
+  const { teamMates } = useTeamMates();
+  const currentTeamMate = teamMates.find(
+    (teamMate) => teamMate.id === teamMateID
+  );
+  const teamMateImage = currentTeamMate?.photo;
+  const teamMateName = currentTeamMate?.name;
   const handleClick = useCallback(
     () => onClick(teamMateID),
     [onClick, teamMateID]

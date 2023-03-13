@@ -1,9 +1,17 @@
+//style
 import styles from "./AddMessage.module.css";
-import { useState, useCallback } from "react";
-import { ACTION } from "../../../../../../constants";
-import { AddMessageProps } from "./type";
+
+//hooks
+import { useState, useCallback, MouseEvent, KeyboardEvent } from "react";
 import { useUserId } from "../../../../../../hooks/UserContext";
-import getDate from "../../../../../../data/getDate";
+
+//constant
+import { ACTION } from "../../../../../../constants";
+
+//type
+import { AddMessageProps } from "./type";
+
+//components
 import Avatar from "../../../../../avatar/Avatar";
 
 const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
@@ -15,8 +23,11 @@ const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
   }, []);
 
   const handleAddMessage = useCallback(
-    (e:any) => {
-      if ((e.key === "Enter" || e.type === "click") && message.length) {
+    (e: MouseEvent | KeyboardEvent) => {
+      if (
+        (("key" in e && e.key === "Enter") || e.type === "click") &&
+        message.length
+      ) {
         onAction({
           type: ACTION.ADD_MESSAGE,
           newMessage: {
@@ -24,10 +35,8 @@ const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
             from: userId,
             to: activeTeamMateId,
             content: message,
-            date: getDate(),
+            date: String(new Date()),
           },
-          userId: userId,
-          teamMateId: activeTeamMateId,
         });
         setMessage("");
       }
@@ -46,7 +55,10 @@ const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
           onChange={handleChange}
           onKeyDown={(e) => handleAddMessage(e)}
         />
-        <span onClick={(e) => handleAddMessage(e)} className={styles.submitButton}>
+        <span
+          onClick={(e) => handleAddMessage(e)}
+          className={styles.submitButton}
+        >
           <Avatar
             src="https://w7.pngwing.com/pngs/818/816/png-transparent-paper-plane-airplane-computer-icons-send-angle-ribbon-rectangle-thumbnail.png"
             height="20px"

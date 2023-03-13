@@ -1,8 +1,12 @@
+//hooks
 import { useState, useEffect } from "react";
 import { useUserId } from "./UserContext";
 
+//type
+import { User } from "./type";
+
 const useTeamMates = () => {
-  const [teamMates, setTeamMates] = useState<any>([]);
+  const [teamMates, setTeamMates] = useState<User[]>([]);
   const userId = useUserId();
   useEffect(() => {
     fetch(`http://localhost:3000/getUserTeamMates/${userId}`)

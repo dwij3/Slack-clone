@@ -1,15 +1,25 @@
-import styles from "./TeamMateIntro.module.css";
-import Avatar from "../../../../../../../avatar/Avatar";
-import { users } from "../../../../../../../../data/Users";
-import { TeamMateIntroProps } from "./types";
-import getUserIdx from "../../../../../../../../data/getUserIdx";
-import { useUserId } from "../../../../../../../../hooks/UserContext";
+//style
+import styles from "./TeamMateInfo.module.css";
 
-const TeamMateIntro = ({ activeTeamMateId }: TeamMateIntroProps) => {
-  const teamMateIdx = getUserIdx(activeTeamMateId);
-  const teamMateName = users[teamMateIdx].name;
-  const teamMateImageUrl = users[teamMateIdx].photo;
+//components
+import Avatar from "../../../../../../../avatar/Avatar";
+
+//type
+import { TeamMateInfoProps } from "./types";
+
+//hooks
+import { useUserId } from "../../../../../../../../hooks/UserContext";
+import useTeamMates from "../../../../../../../../hooks/useTeamMates";
+
+const TeamMateInfo = ({ activeTeamMateId }: TeamMateInfoProps) => {
+  const { teamMates } = useTeamMates();
+  const activeTeamMate = teamMates?.find((teamMate: any) => {
+    return teamMate.id === activeTeamMateId;
+  });
+  const teamMateName = activeTeamMate?.name;
+  const teamMateImageUrl = activeTeamMate?.photo;
   const userId = useUserId();
+
   return (
     <div className={styles.friendDetail}>
       <div className={styles.detail}>
@@ -35,4 +45,4 @@ const TeamMateIntro = ({ activeTeamMateId }: TeamMateIntroProps) => {
   );
 };
 
-export default TeamMateIntro;
+export default TeamMateInfo;

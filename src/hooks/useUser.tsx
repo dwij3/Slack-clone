@@ -1,9 +1,13 @@
+//hooks
 import { useUserId } from "./UserContext";
 import { useEffect, useState } from "react";
 
+//type
+import { User } from "./type";
+
 const useUser = () => {
   const userId = useUserId();
-  const [userInfo, setUserInfo] = useState<any>("");
+  const [userInfo, setUserInfo] = useState<User | null>(null);
   useEffect(() => {
     fetch(`http://localhost:3000/getCurrentUserInfo/${userId}`)
       .then((response) => {

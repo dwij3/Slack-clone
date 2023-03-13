@@ -1,6 +1,11 @@
+//style
 import styles from "./SideBar.module.css";
+
+//components
 import TeamMateList from "./components/teamMateList";
 import SideBarHeader from "./components/sideBarHeader/SideBarHeader";
+
+//type
 import { SideBarProps } from "./type";
 
 const SideBar = ({ onClick, activeTeamMateId }: SideBarProps) => {
@@ -11,10 +16,7 @@ const SideBar = ({ onClick, activeTeamMateId }: SideBarProps) => {
         height="20px"
         companyName="Sprinklr"
       />
-      <TeamMateList
-        onClick={onClick}
-        activeTeamMateId={activeTeamMateId}
-      />
+      <TeamMateList onClick={onClick} activeTeamMateId={activeTeamMateId} />
     </div>
   );
 };

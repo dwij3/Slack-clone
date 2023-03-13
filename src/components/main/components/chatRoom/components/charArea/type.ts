@@ -1,12 +1,8 @@
-export type MESSAGE = {
-  id: number;
-  from: number;
-  to: number;
-  Date: string;
-  content: string;
-};
+import { Message } from "../../../../../../hooks/type";
+
+export type MessageType = Message;
 
 export type ChatAreaProps = {
   activeTeamMateId: number;
-  filterMessage: any;
+  chat: any;
 };

@@ -1,11 +1,15 @@
+//style
 import styles from "./chatArea.module.css";
-import TeamMateIntro from "./components/teamMateIntro/TeamMateIntro";
+
+//components
+import TeamMateIntro from "./components/teamMateInfo/TeamMateInfo";
 import Message from "./components/message/Message";
-import { ChatAreaProps, MESSAGE } from "./type";
-import { useUserId } from "../../../../../../hooks/UserContext";
+
+//hooks
+import { ChatAreaProps, MessageType } from "./type";
 import { useEffect, useRef } from "react";
 
-const ChatArea = ({ activeTeamMateId, filterMessage }: ChatAreaProps) => {
+const ChatArea = ({ activeTeamMateId, chat }: ChatAreaProps) => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -13,27 +17,18 @@ const ChatArea = ({ activeTeamMateId, filterMessage }: ChatAreaProps) => {
       lastMessageRef.current.scrollIntoView();
     }
   });
-
-  let userId = useUserId();
-  const conversation = filterMessage(userId, activeTeamMateId);
   return (
     <div className={styles.displayMessage}>
       <TeamMateIntro activeTeamMateId={activeTeamMateId} />
-      {conversation.map(
-        (message: MESSAGE, idx: number, conversation: MESSAGE[]) => {
-          if (idx === conversation.length - 1) {
-            return (
-              <Message
-                key={message.id}
-                message={message}
-                lastMessageRef={lastMessageRef}
-              />
-            );
-          }
-
-          return <Message key={message.id} message={message} />;
-        }
-      )}
+      {chat
+        ? chat.map((message: MessageType, idx: number) => (
+            <Message
+              key={message.id}
+              message={message}
+              lastMessageRef={idx === chat.length - 1 ? lastMessageRef : null}
+            />
+          ))
+        : null}
     </div>
   );
 };

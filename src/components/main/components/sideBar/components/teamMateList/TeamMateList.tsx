@@ -1,20 +1,24 @@
+//style
 import styles from "./TeamMateList.module.css";
+
+//component
 import TeamMateDetail from "./components/teamMateDetail";
+
+//type
 import { TeamMateListProps } from "./type";
+
+//hooks
 import { useCallback, useState } from "react";
 import useTeamMates from "../../../../../../hooks/useTeamMates";
 
-const TeamMateList = ({
-  onClick,
-  activeTeamMateId,
-}: TeamMateListProps) => {
-  const [hideTeamMateList, setHideTeamMateList] = useState(false);
+const TeamMateList = ({ onClick, activeTeamMateId }: TeamMateListProps) => {
+  const [hideTeamMateList, setHideTeamMateList] = useState<boolean>(false);
   const handleClick = useCallback(() => {
     setHideTeamMateList(!hideTeamMateList);
   }, [hideTeamMateList]);
 
   const transformButton = hideTeamMateList ? styles.transform : "";
-  const {teamMates} = useTeamMates();
+  const { teamMates } = useTeamMates();
 
   return (
     <div className={styles.teamMateList}>
@@ -28,20 +32,18 @@ const TeamMateList = ({
         <span className={styles.messageTitle}>Direct Messages</span>
       </div>
 
-      {
-      hideTeamMateList
+      {hideTeamMateList
         ? null
         : teamMates?.map((teamMate: any) => {
-          return (
-            <TeamMateDetail
-              teamMateID={teamMate.id}
-              key={teamMate.id}
-              onClick={onClick}
-              activeTeamMateId={activeTeamMateId}
-            />
-          );
-        })
-          }
+            return (
+              <TeamMateDetail
+                teamMateID={teamMate.id}
+                key={teamMate.id}
+                onClick={onClick}
+                activeTeamMateId={activeTeamMateId}
+              />
+            );
+          })}
     </div>
   );
 };

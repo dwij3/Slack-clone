@@ -1,5 +1,8 @@
+//hooks
 import { createContext, useContext } from "react";
-import { childrenProps } from "./type";
+
+//type
+import { UserContextProviderProps } from "./type";
 
 const UserContext = createContext<null | number>(null);
 
@@ -13,7 +16,7 @@ export const useUserId = (): number => {
   }
 };
 
-const UserContextProvider = ({ children, value }: childrenProps) => {
+const UserContextProvider = ({ children, value }: UserContextProviderProps) => {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 

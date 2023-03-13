@@ -1,11 +1,15 @@
+//style
 import styles from "./Profile.module.css";
+
+//components
 import Avatar from "../avatar/Avatar";
+
+//hooks
 import useUser from "../../hooks/useUser";
 
 const Profile = () => {
   const { userInfo } = useUser();
-  const userImage = userInfo.photo;
-  console.log(userInfo);
+  const userImage = userInfo?.photo;
 
   return (
     <div className={styles.header}>

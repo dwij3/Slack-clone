@@ -1,4 +1,4 @@
 export type SideBarProps = {
-  onClick: any;
+  onClick: (activeTeamMateId: number) => void;
   activeTeamMateId: number;
 };

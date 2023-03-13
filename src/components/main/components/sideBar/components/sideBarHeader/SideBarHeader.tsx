@@ -1,5 +1,10 @@
+//style
 import styles from "./SideBarHeader.module.css";
+
+//components
 import Avatar from "../../../../../avatar/Avatar";
+
+//type
 import { SideBarHeaderProps } from "./type";
 
 const SideBarHeader = ({

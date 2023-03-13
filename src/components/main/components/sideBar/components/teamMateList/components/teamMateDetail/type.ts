@@ -1,5 +1,5 @@
 export type TeamMateDetailProps = {
   teamMateID: number;
-  onClick: any;
+  onClick: (activeTeamMateId: number) => void;
   activeTeamMateId: number;
 };

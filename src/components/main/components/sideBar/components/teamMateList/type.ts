@@ -1,4 +1,4 @@
 export type TeamMateListProps = {
-  onClick: any;
+  onClick: (activeTeamMateId: number) => void;
   activeTeamMateId: number;
 };

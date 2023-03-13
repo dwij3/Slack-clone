@@ -1,18 +1,24 @@
+//style
 import styles from "./Message.module.css";
+
+//components
 import Avatar from "../../../../../../../avatar/Avatar";
-import { users } from "../../../../../../../../data/Users";
-import getUserIdx from "../../../../../../../../data/getUserIdx";
 
+//hooks
+import useTeamMates from "../../../../../../../../hooks/useTeamMates";
 
+//type
+import { MessageProps } from "./type";
 
-const Message = ({ message, lastMessageRef }: any) => {
+const Message = ({ message, lastMessageRef }: MessageProps) => {
+  const ownerId: number | string = message?.from;
 
-  const ownerId: number = message.from;
-  const ownerIdx: number | string = getUserIdx(ownerId);
-  const ownerImage = users[ownerIdx].photo;
-  const ownerName = users[ownerIdx].name;
-  const content: string = message.content;
-  const currentTime = message.date;
+  const { teamMates } = useTeamMates();
+  const owner = teamMates?.find((teamMate: any) => teamMate.id === ownerId);
+  const ownerImage = owner?.photo;
+  const ownerName = owner?.name;
+  const content: string = message?.content;
+  const currentTime = message?.date;
 
   return (
     <div className={styles.message} ref={lastMessageRef}>

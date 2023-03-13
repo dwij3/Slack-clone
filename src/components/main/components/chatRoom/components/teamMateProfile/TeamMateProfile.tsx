@@ -1,13 +1,21 @@
+//style
 import styles from "./TeamMateProfile.module.css";
+
+//component
 import Avatar from "../../../../../avatar/Avatar";
-import {TeamMateProfileProps} from "./type";
+
+//type
+import { TeamMateProfileProps } from "./type";
+
+//hooks
 import useTeamMates from "../../../../../../hooks/useTeamMates";
+import { User } from "../../../../../../hooks/type";
 
 const TeamMateProfile = ({ activeTeamMateId }: TeamMateProfileProps) => {
-
-
-  const {teamMates} = useTeamMates();
-  const teamMate = teamMates.find((teamMate:any) => teamMate.id === activeTeamMateId);
+  const { teamMates } = useTeamMates();
+  const teamMate = teamMates.find(
+    (teamMate: User) => teamMate.id === activeTeamMateId
+  );
   const teamMateImage = teamMate?.photo;
   const teamMateName = teamMate?.name;
 

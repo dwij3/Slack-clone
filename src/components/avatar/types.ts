@@ -1,5 +1,5 @@
 export type Avatarprops = {
-  src: string;
+  src: string | undefined;
   height: string;
   width: string;
 };
