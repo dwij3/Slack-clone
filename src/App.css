@@ -1,8 +1,5 @@
 .App {
   box-sizing: border-box;
-  height: 98vh;
-  width: 100vw;
   display: flex;
-  align-items: stretch;
-  margin-top: 2vh;
+  flex-direction: column;
 }

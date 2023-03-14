@@ -1,0 +1,1 @@
+export { TeamMateProfile } from "./TeamMateProfile";

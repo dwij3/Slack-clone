@@ -1,0 +1,15 @@
+.teamMateProfile {
+  border: 1px solid #2b2a2f;
+  padding: 10px 10px 10px 20px;
+  height: 35px;
+  border-left: none;
+  display: flex;
+}
+
+.teamMateName {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 30px;
+  color: #c1c7cd;
+  margin-left: 15px;
+}
