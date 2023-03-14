@@ -1,16 +1,22 @@
 import styles from "./Avatar.module.css";
-import { Avatarprops } from "./types";
 
-const Avatar = ({ src, height, width }: Avatarprops) => {
+type Avatarprops = {
+  src: string | undefined;
+  height: string;
+  width: string;
+};
+
+
+export const Avatar = ({ src, height, width }: Avatarprops) => {
   return (
     <img
       className={styles.avatar}
       src={src}
-      alt={"!!"}
+      alt={""}
       height={height}
       width={width}
     />
   );
 };
 
-export default Avatar;
+

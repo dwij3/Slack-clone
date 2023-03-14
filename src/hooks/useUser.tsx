@@ -1,28 +1,17 @@
 //hooks
-import { useUserId } from "./UserContext";
-import { useEffect, useState } from "react";
+// import { useUserId } from "./UserContext";
 
 //type
-import { User } from "./type";
+import {User} from '../types/types';
+import {useQuery} from "./useQuery";
 
-const useUser = () => {
-  const userId = useUserId();
-  const [userInfo, setUserInfo] = useState<User | null>(null);
-  useEffect(() => {
-    fetch(`http://localhost:3000/getCurrentUserInfo/${userId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((json) => {
-        setUserInfo(json);
-      })
-      .catch((err) => console.error(`Fetch problem: ${err.message}`));
-  }, [userId]);
+type UseUser = {userInfo:User , loading:boolean , error:boolean}
 
-  return { userInfo };
+export const useUser = (id:(string | number)):UseUser => {
+
+  const {data , loading , error} = useQuery(`http://localhost:3000/getCurrentUserInfo/${id}`);
+  const userInfo = data;
+  return {userInfo , loading ,error};
 };
 
-export default useUser;
+

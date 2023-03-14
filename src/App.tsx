@@ -1,15 +1,14 @@
-import React from "react";
 import "./App.css";
-import Main from "./components/main/Main";
-import UserContextProvider from "./hooks/UserContext";
-import Profile from "./components/profile";
+import {Body} from "./components/body/Body";
+import {UserContextProvider} from "./hooks/UserContext";
+import {Header} from "./components/header";
 
 function App() {
   return (
     <UserContextProvider value={1}>
       <div className="App">
-        <Profile />
-        <Main />
+        <Header/>
+        <Body />
       </div>
     </UserContextProvider>
   );

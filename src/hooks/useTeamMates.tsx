@@ -1,28 +1,21 @@
 //hooks
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { useUserId } from "./UserContext";
 
 //type
-import { User } from "./type";
+import { User } from "../types/types";
+import {useQuery} from "./useQuery";
 
-const useTeamMates = () => {
-  const [teamMates, setTeamMates] = useState<User[]>([]);
+type UseTeamMates = {
+  teamMates:User[] , 
+  loading:boolean ,
+   error:boolean 
+}
+
+export const useTeamMates = ():UseTeamMates => {
   const userId = useUserId();
-  useEffect(() => {
-    fetch(`http://localhost:3000/getUserTeamMates/${userId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((json) => {
-        setTeamMates(json);
-      })
-      .catch((err) => console.error(`Fetch problem: ${err.message}`));
-  }, [userId]);
-
-  return { teamMates };
+  const {data:teamMates , loading , error} = useQuery(`http://localhost:3000/getUserTeamMates/${userId}`);
+  return {teamMates , loading , error };
 };
 
-export default useTeamMates;
+
