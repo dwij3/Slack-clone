@@ -29,11 +29,14 @@ export const ChatRoom = ({ activeTeamMateId }: ChatRoomProps) => {
   return (
     <div className={styles.chatRoom}>
       <TeamMateProfile activeTeamMateId={activeTeamMateId} />
+  
       <ChatArea
         activeTeamMateId={activeTeamMateId}
         chat={chatRoom?.messageIds}
       />
       <AddMessage activeTeamMateId={activeTeamMateId} onAction={onAction} />
+
+
     </div>
   );
 };

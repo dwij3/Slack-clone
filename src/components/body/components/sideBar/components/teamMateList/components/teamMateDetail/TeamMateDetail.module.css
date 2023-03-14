@@ -3,10 +3,7 @@
   align-items: center;
   border-radius: 5px;
   height: 28px;
-  width: 88%;
-  margin: 1px;
   padding: 0px 10px;
-  /* margin-right: 5px; */
 }
 
 .teamMateDetail:hover {

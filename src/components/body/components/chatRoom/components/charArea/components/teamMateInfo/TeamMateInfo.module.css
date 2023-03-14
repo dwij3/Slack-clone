@@ -1,13 +1,14 @@
 .friendDetail {
   margin-top: auto;
 
-  height: 95px;
-  width: 90%;
+  min-height: 95px;
+  width: 100%;
   background: transparent;
   font-size: 15px;
   line-height: 22px;
   color: #d1d2d3;
   margin-bottom: 10px;
+  border-bottom: 1px solid #34373b;
 
   display: flex;
   flex-direction: column;
@@ -34,11 +35,18 @@
 }
 
 .commonMessage {
-  height: 23px;
+  height: auto;
   width: auto;
   color: #abacad;
   margin: 10px 0px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+}
+
+.commonMessage div{
+  word-wrap: break-word;
+  word-break: break-all;
+  height: auto;
+  overflow: scroll;
 }
 
 .highlight {
@@ -46,3 +54,5 @@
   background-color: #1d2a34;
   padding: 0 4px;
 }
+
+

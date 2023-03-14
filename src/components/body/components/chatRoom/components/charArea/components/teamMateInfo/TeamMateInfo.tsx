@@ -44,6 +44,8 @@ export const TeamMateInfo = ({ activeTeamMateId }: TeamMateInfoProps) => {
           </span>
         )}
       </div>
+
+      
     </div>
   );
 };

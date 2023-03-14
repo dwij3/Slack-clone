@@ -24,16 +24,17 @@ type AddMessageProps = {
   onAction: (action: Action) => void;
 };
 
-function formattedDate(d = new Date()) {
-  let month = String(d.getMonth() + 1);
-  let day = String(d.getDate());
-  const year = String(d.getFullYear());
-
-  if (month.length < 2) month = "0" + month;
-  if (day.length < 2) day = "0" + day;
-
-  return `${day}/${month}/${year}`;
+function formatAMPM(date = new Date()) {
+  var hours = date.getHours();
+  var minutes: number|string = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
 }
+
 
 export const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
   const userId = useUserId();
@@ -56,7 +57,7 @@ export const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
             from: userId,
             to: activeTeamMateId,
             content: message,
-            date: String(formattedDate()),
+            date: formatAMPM(),
           },
         });
         setMessage("");
