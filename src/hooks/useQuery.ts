@@ -5,7 +5,7 @@ export const useQuery = (url: string, isValidUrl: boolean) => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-
+  
   useEffect(() => {
     if (isValidUrl) {
       fetch(url)

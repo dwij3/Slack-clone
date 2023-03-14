@@ -9,6 +9,7 @@ import { Message as MessageType } from "../../../../../../../../types/types";
 
 //styles
 import styles from "./Message.module.css";
+import { useUserId } from "../../../../../../../../hooks/UserContext";
 
 type MessageProps = {
   message: MessageType;
@@ -16,7 +17,8 @@ type MessageProps = {
 };
 
 export const Message = ({ message, lastMessageRef }: MessageProps) => {
-  const { userInfo: user } = useUserQuery();
+  const userId = useUserId();
+  const { userInfo: user } = useUserQuery(userId);
 
   return (
     <div className={styles.message} ref={lastMessageRef}>

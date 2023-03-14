@@ -1,27 +1,27 @@
 export type UserContextProviderProps = {
   children: React.ReactNode;
-  value: number;
+  value: string;
 };
 
 export type User = {
-  id: number | string;
+  id: string;
   name: string;
   photo: string;
-  chatRoomId: number[];
+  chatRoomId: string[];
 };
 
 export type Message = {
-  id: number | string;
-  from: number | string;
-  to: number | string | undefined;
+  id: string;
+  from:  string;
+  to: string | undefined;
   date: string;
   content: string;
 };
 
 export type ChatRoom = {
-  id: number | string;
+  id:string;
   chatRoomName: string;
-  userIds: (number | string)[];
+  userIds: string[];
   messageIds: Message[] | undefined;
   type: string;
 };

@@ -13,9 +13,11 @@ import { User } from "../../types/types";
 
 //style
 import styles from "./Body.module.css";
+import { useUserId } from "../../hooks/UserContext";
 
 export const Body = () => {
-  const { userInfo } = useUserQuery();
+  const userId = useUserId();
+  const { userInfo } = useUserQuery(userId);
 
   //activeTeamMate has the information about teamMate user currently chatting with
   const [activeTeamMate, setActiveTeamMate] = useState<User>(userInfo);

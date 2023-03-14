@@ -14,8 +14,7 @@ import { useUserId } from "../../../../../../hooks/UserContext";
 import { Avatar } from "../../../../../avatar/Avatar";
 
 //type
-import { Action } from "../../../../../../types/types";
-import { User } from "../../../../../../types/types";
+import { Action , User } from "../../../../../../types/types";
 
 //constant
 import { ACTION } from "../../../../../../constants";

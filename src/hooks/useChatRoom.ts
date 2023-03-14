@@ -1,21 +1,23 @@
-//hooks
+//libs
 import { useState, useCallback, useEffect } from "react";
+
+//hooks
+import { useQuery } from "./useQuery";
 
 //type
 import { ChatRoom, Action, Message } from "../types/types";
-import { useQuery } from "./useQuery";
 
 //constants
 import { ACTION } from "../constants";
 
 export const useChatRoom = (
-  userId: number | string | undefined,
-  teamMateId: number | string | undefined
+  userId:  string,
+  teamMateId:  string
 ) => {
-  const [chatRoom, setChatRoom] = useState<ChatRoom | null>(null);
+  const [chatRoom, setChatRoom] = useState<ChatRoom | undefined>(undefined);
   const isValidUrl = !!(userId && teamMateId);
   const { data, loading, error } = useQuery(
-    `http://localhost:3000/getChatRoom/${userId}/${teamMateId}`,
+    `http://localhost:4000/getChatRoom/${userId}/${teamMateId}`,
     isValidUrl
   );
   useEffect(() => setChatRoom(data), [data]);
@@ -31,7 +33,7 @@ export const useChatRoom = (
 
       // call backEnd
       if (!chatRoom) return;
-      await fetch(`http://localhost:3000/addMessage/${chatRoom.id}`, {
+      await fetch(`http://localhost:4000/addMessage/${chatRoom.id}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newMessage),

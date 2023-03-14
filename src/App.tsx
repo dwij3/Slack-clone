@@ -5,7 +5,7 @@ import { Header } from "./components/header";
 
 function App() {
   return (
-    <UserContextProvider value={1}>
+    <UserContextProvider value={"1"}>
       <div className="App">
         <Header />
         <Body />

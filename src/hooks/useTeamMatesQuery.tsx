@@ -1,9 +1,9 @@
-//hook
-import { useUserId } from "./UserContext";
+//hooks
+import { useQuery } from "./useQuery";
 
 //type
 import { User } from "../types/types";
-import { useQuery } from "./useQuery";
+
 
 type UseTeamMatesQuery = {
   teamMates: User[];
@@ -11,13 +11,14 @@ type UseTeamMatesQuery = {
   error: boolean;
 };
 
-export const useTeamMatesQuery = (): UseTeamMatesQuery => {
-  const userId = useUserId();
+export const useTeamMatesQuery = (
+  userId: string
+): UseTeamMatesQuery => {
   const isValidUrl = !!userId;
   const {
     data: teamMates,
     loading,
     error,
-  } = useQuery(`http://localhost:3000/getUserTeamMates/${userId}`, isValidUrl);
+  } = useQuery(`http://localhost:4000/getUserTeamMates/${userId}`, isValidUrl);
   return { teamMates, loading, error };
 };

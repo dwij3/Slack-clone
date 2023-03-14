@@ -1,12 +1,12 @@
-//hooks
+//libs
 import { createContext, useContext } from "react";
 
 //type
 import { UserContextProviderProps } from "../types/types";
 
-const UserContext = createContext<number | null>(null);
+const UserContext = createContext<string | null>(null);
 
-export const useUserId = (): number => {
+export const useUserId = (): string => {
   const context = useContext(UserContext);
 
   if (context) return context;
