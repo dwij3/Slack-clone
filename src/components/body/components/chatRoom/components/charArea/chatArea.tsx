@@ -2,8 +2,8 @@
 import styles from "./chatArea.module.css";
 
 //components
-import {TeamMateInfo} from "./components/teamMateInfo/TeamMateInfo";
-import {Message} from "./components/message/Message";
+import { TeamMateInfo } from "./components/teamMateInfo/TeamMateInfo";
+import { Message } from "./components/message/Message";
 
 //hooks
 import { useEffect, useRef } from "react";
@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
 //type
 import { Message as MessageType } from "../../../../../../types/types";
 type ChatAreaProps = {
-  activeTeamMateId: number|string;
+  activeTeamMateId: number | string;
   chat: MessageType[] | undefined;
 };
 
@@ -38,4 +38,3 @@ export const ChatArea = ({ activeTeamMateId, chat }: ChatAreaProps) => {
     </div>
   );
 };
-

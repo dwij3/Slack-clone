@@ -2,7 +2,7 @@
 import styles from "./SideBarHeader.module.css";
 
 //components
-import {Avatar} from "../../../../../avatar/Avatar";
+import { Avatar } from "../../../../../avatar/Avatar";
 
 //type
 type SideBarHeaderProps = {
@@ -23,5 +23,3 @@ export const SideBarHeader = ({
     </div>
   );
 };
-
-

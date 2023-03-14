@@ -2,32 +2,35 @@
 import styles from "./TeamMateList.module.css";
 
 //component
-import {TeamMateDetail} from "./components/teamMateDetail";
-import {Error} from '../../../../../error';
+import { TeamMateDetail } from "./components/teamMateDetail";
+import { Error } from "../../../../../error";
 import { Spinner } from "../../../../../spinner";
 
 //hooks
 import { useCallback, useState } from "react";
-import {useTeamMates} from "../../../../../../hooks/useTeamMates";
+import { useTeamMates } from "../../../../../../hooks/useTeamMates";
 
 //type
 import { User } from "../../../../../../types/types";
 type TeamMateListProps = {
-  onChangeActiveTeamMate: (activeTeamMateId: number|string) => void;
-  activeTeamMateId: number|string;
+  onChangeActiveTeamMate: (activeTeamMateId: number | string) => void;
+  activeTeamMateId: number | string;
 };
 
-export const TeamMateList = ({ onChangeActiveTeamMate, activeTeamMateId }: TeamMateListProps) => {
+export const TeamMateList = ({
+  onChangeActiveTeamMate,
+  activeTeamMateId,
+}: TeamMateListProps) => {
   const [toggleTeamMateList, setToggleTeamMateList] = useState<boolean>(true);
   const handleClick = useCallback(() => {
     setToggleTeamMateList(!toggleTeamMateList);
   }, [toggleTeamMateList]);
 
   const transformButtonClass = !toggleTeamMateList ? styles.transform : "";
-  const { teamMates ,loading , error} = useTeamMates();
+  const { teamMates, loading, error } = useTeamMates();
 
-  if(loading) return <Spinner />
-  if(error) return <Error/>
+  if (loading) return <Spinner />;
+  if (error) return <Error />;
 
   return (
     <div className={styles.teamMateList}>
@@ -51,9 +54,8 @@ export const TeamMateList = ({ onChangeActiveTeamMate, activeTeamMateId }: TeamM
                 isActive={teamMate.id === activeTeamMateId}
               />
             );
-          }):null
-          }
+          })
+        : null}
     </div>
   );
 };
-

@@ -2,17 +2,17 @@
 import styles from "./TeamMateDetail.module.css";
 
 //component
-import {Avatar} from "../../../../../../../avatar/Avatar";
+import { Avatar } from "../../../../../../../avatar/Avatar";
 
 //hooks
 import { useCallback } from "react";
 import { useUserId } from "../../../../../../../../hooks/UserContext";
-import {useTeamMates} from "../../../../../../../../hooks/useTeamMates";
+import { useTeamMates } from "../../../../../../../../hooks/useTeamMates";
 
 //type
 type TeamMateDetailProps = {
   teamMateId: number | string;
-  onChangeActiveTeamMate: (activeTeamMateId: (number|string) ) => void;
+  onChangeActiveTeamMate: (activeTeamMateId: number | string) => void;
   isActive: boolean;
 };
 
@@ -44,5 +44,3 @@ export const TeamMateDetail = ({
     </div>
   );
 };
-
-

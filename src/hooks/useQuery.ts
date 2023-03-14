@@ -1,10 +1,10 @@
 //hooks
 import { useEffect, useState } from "react";
 
-export const useQuery = (url:string) => {
-  const [data , setData] = useState<any>(null);
-  const [loading,setLoading] = useState<boolean>(true);
-  const [error,setError] = useState<boolean>(false);
+export const useQuery = (url: string) => {
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     fetch(url)
@@ -21,13 +21,12 @@ export const useQuery = (url:string) => {
         setError(false);
         setData(json);
       })
-      .catch(()=>{
+      .catch(() => {
         setLoading(false);
         setError(true);
-        setData(null)
+        setData(null);
       });
   }, [url]);
 
-  return { data ,loading , error  };
+  return { data, loading, error };
 };
-

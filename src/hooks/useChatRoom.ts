@@ -5,25 +5,44 @@ import { useState, useCallback, useEffect } from "react";
 import { ACTION } from "../constants";
 
 //type
-import { ChatRoom, Action , Message } from "../types/types";
-import {useQuery} from "./useQuery";
+import { ChatRoom, Action, Message } from "../types/types";
+import { useQuery } from "./useQuery";
 
-export const useChatRoom = (userId: number|string, teamMateId: number|string) => {
+export const useChatRoom = (
+  userId: number | string,
+  teamMateId: number | string
+) => {
   const [chatRoom, setChatRoom] = useState<ChatRoom | null>(null);
   const { data, loading, error } = useQuery(
     `http://localhost:3000/getChatRoom/${userId}/${teamMateId}`
   );
   useEffect(() => setChatRoom(data), [data]);
 
-  const handleAddMessage = useCallback( (newMessage: Message) => {
-    setChatRoom((chatRoom: any) => {
-      return {
-        ...chatRoom,
-        messageIds: [...chatRoom.messageIds, newMessage],
-      };
-    });
-    // call backEnd
-  }, []);
+  const handleAddMessage = useCallback(
+    async (newMessage: Message) => {
+      setChatRoom((chatRoom: any) => {
+        return {
+          ...chatRoom,
+          messageIds: [...chatRoom.messageIds, newMessage],
+        };
+      });
+
+      // call backEnd
+      if (!chatRoom) return;
+      const result = await fetch(
+        `http://localhost:3000/addMessage/${chatRoom.id}`,
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(newMessage),
+        }
+      );
+
+      const resultInJson = await result.json();
+      console.log(resultInJson);
+    },
+    [chatRoom]
+  );
 
   const onAction = useCallback(
     (action: Action) => {
@@ -41,5 +60,3 @@ export const useChatRoom = (userId: number|string, teamMateId: number|string) =>
 
   return { chatRoom, onAction, loading, error };
 };
-
-

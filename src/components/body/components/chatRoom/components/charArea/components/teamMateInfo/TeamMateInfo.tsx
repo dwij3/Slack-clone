@@ -2,19 +2,17 @@
 import styles from "./TeamMateInfo.module.css";
 
 //components
-import {Avatar} from "../../../../../../../avatar/Avatar";
+import { Avatar } from "../../../../../../../avatar/Avatar";
 
 //hooks
 import { useUserId } from "../../../../../../../../hooks/UserContext";
-import {useTeamMates} from "../../../../../../../../hooks/useTeamMates";
+import { useTeamMates } from "../../../../../../../../hooks/useTeamMates";
 
 //type
 import { User } from "../../../../../../../../types/types";
 type TeamMateInfoProps = {
-  activeTeamMateId: number|string;
+  activeTeamMateId: number | string;
 };
-
-
 
 export const TeamMateInfo = ({ activeTeamMateId }: TeamMateInfoProps) => {
   const { teamMates } = useTeamMates();
@@ -49,4 +47,3 @@ export const TeamMateInfo = ({ activeTeamMateId }: TeamMateInfoProps) => {
     </div>
   );
 };
-

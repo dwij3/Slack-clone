@@ -2,13 +2,16 @@
 import styles from "./Message.module.css";
 
 //components
-import {Avatar} from "../../../../../../../avatar/Avatar";
+import { Avatar } from "../../../../../../../avatar/Avatar";
 
 //hooks
-import {useTeamMates} from "../../../../../../../../hooks/useTeamMates";
+import { useTeamMates } from "../../../../../../../../hooks/useTeamMates";
 
 //type
-import { Message as MessageType , User} from "../../../../../../../../types/types";
+import {
+  Message as MessageType,
+  User,
+} from "../../../../../../../../types/types";
 
 type MessageProps = {
   message: MessageType;

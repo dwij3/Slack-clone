@@ -6,7 +6,6 @@ type Avatarprops = {
   width: string;
 };
 
-
 export const Avatar = ({ src, height, width }: Avatarprops) => {
   return (
     <img
@@ -18,5 +17,3 @@ export const Avatar = ({ src, height, width }: Avatarprops) => {
     />
   );
 };
-
-

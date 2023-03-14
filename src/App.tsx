@@ -1,13 +1,13 @@
 import "./App.css";
-import {Body} from "./components/body/Body";
-import {UserContextProvider} from "./hooks/UserContext";
-import {Header} from "./components/header";
+import { Body } from "./components/body/Body";
+import { UserContextProvider } from "./hooks/UserContext";
+import { Header } from "./components/header";
 
 function App() {
   return (
     <UserContextProvider value={1}>
       <div className="App">
-        <Header/>
+        <Header />
         <Body />
       </div>
     </UserContextProvider>

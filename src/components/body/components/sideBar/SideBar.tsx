@@ -2,18 +2,19 @@
 import styles from "./SideBar.module.css";
 
 //components
-import {TeamMateList} from "./components/teamMateList";
-import {SideBarHeader} from "./components/sideBarHeader/SideBarHeader";
+import { TeamMateList } from "./components/teamMateList";
+import { SideBarHeader } from "./components/sideBarHeader/SideBarHeader";
 
 //type
 type SideBarProps = {
-  onChangeActiveTeamMate: (activeTeamMateId: number|string) => void;
-  activeTeamMateId: number|string;
+  onChangeActiveTeamMate: (activeTeamMateId: number | string) => void;
+  activeTeamMateId: number | string;
 };
 
-
-
-export const SideBar = ({ onChangeActiveTeamMate, activeTeamMateId }: SideBarProps) => {
+export const SideBar = ({
+  onChangeActiveTeamMate,
+  activeTeamMateId,
+}: SideBarProps) => {
   return (
     <div className={styles.sideBar}>
       <SideBarHeader
@@ -21,8 +22,10 @@ export const SideBar = ({ onChangeActiveTeamMate, activeTeamMateId }: SideBarPro
         height="20px"
         companyName="Sprinklr"
       />
-      <TeamMateList onChangeActiveTeamMate={onChangeActiveTeamMate} activeTeamMateId={activeTeamMateId} />
+      <TeamMateList
+        onChangeActiveTeamMate={onChangeActiveTeamMate}
+        activeTeamMateId={activeTeamMateId}
+      />
     </div>
   );
 };
-
