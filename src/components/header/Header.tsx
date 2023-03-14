@@ -6,11 +6,9 @@ import { Avatar } from "../avatar/Avatar";
 
 //hooks
 import { useUser } from "../../hooks/useUser";
-import { useUserId } from "../../hooks/UserContext";
 
 export const Header = () => {
-  const userId = useUserId();
-  const { userInfo } = useUser(userId);
+  const { userInfo } = useUser();
   const userImage = userInfo?.photo;
 
   return (

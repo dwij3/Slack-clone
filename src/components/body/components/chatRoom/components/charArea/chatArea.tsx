@@ -9,13 +9,13 @@ import { Message } from "./components/message/Message";
 import { useEffect, useRef } from "react";
 
 //type
-import { Message as MessageType } from "../../../../../../types/types";
+import { Message as MessageType, User } from "../../../../../../types/types";
 type ChatAreaProps = {
-  activeTeamMateId: number | string;
+  activeTeamMate: User;
   chat: MessageType[] | undefined;
 };
 
-export const ChatArea = ({ activeTeamMateId, chat }: ChatAreaProps) => {
+export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const ChatArea = ({ activeTeamMateId, chat }: ChatAreaProps) => {
   });
   return (
     <div className={styles.displayMessage}>
-      <TeamMateInfo activeTeamMateId={activeTeamMateId} />
+      <TeamMateInfo activeTeamMate={activeTeamMate} />
       {chat
         ? chat.map((message: MessageType, idx: number) => (
             <Message

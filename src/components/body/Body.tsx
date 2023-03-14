@@ -5,27 +5,34 @@ import styles from "./Body.module.css";
 import { SideBar } from "./components/sideBar/SideBar";
 import { ChatRoom } from "./components/chatRoom/ChatRoom";
 
-//hooks
-import { useCallback, useState } from "react";
-import { useUserId } from "../../hooks/UserContext";
+//hooks and libs
+import { useCallback, useEffect, useState } from "react";
+
+//type
+import { User } from "../../types/types";
+import { useUser } from "../../hooks/useUser";
 
 export const Body = () => {
-  const userId = useUserId();
-  const [activeTeamMateId, setActiveTeamMateId] = useState<number | string>(
-    userId
-  );
+  const { userInfo } = useUser();
 
-  const handleClick = useCallback((updatedTeamMateId: number | string) => {
-    setActiveTeamMateId(updatedTeamMateId);
+  //activeTeamMate has the information about teamMate user currently chatting with
+  const [activeTeamMate, setActiveTeamMate] = useState<User>(userInfo);
+
+  useEffect(() => {
+    setActiveTeamMate(userInfo);
+  }, [userInfo]);
+
+  const handleClick = useCallback((activeTeamMate: User) => {
+    setActiveTeamMate(activeTeamMate);
   }, []);
 
   return (
     <div className={styles.body}>
       <SideBar
         onChangeActiveTeamMate={handleClick}
-        activeTeamMateId={activeTeamMateId}
+        activeTeamMate={activeTeamMate}
       />
-      <ChatRoom activeTeamMateId={activeTeamMateId} />
+      <ChatRoom activeTeamMate={activeTeamMate} />
     </div>
   );
 };

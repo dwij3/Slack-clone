@@ -13,25 +13,25 @@ import { useTeamMates } from "../../../../../../hooks/useTeamMates";
 //type
 import { User } from "../../../../../../types/types";
 type TeamMateListProps = {
-  onChangeActiveTeamMate: (activeTeamMateId: number | string) => void;
-  activeTeamMateId: number | string;
+  onChangeActiveTeamMate: (activeTeamMate: User) => void;
+  activeTeamMate: User;
 };
 
 export const TeamMateList = ({
   onChangeActiveTeamMate,
-  activeTeamMateId,
+  activeTeamMate,
 }: TeamMateListProps) => {
   const [toggleTeamMateList, setToggleTeamMateList] = useState<boolean>(true);
   const handleClick = useCallback(() => {
     setToggleTeamMateList(!toggleTeamMateList);
   }, [toggleTeamMateList]);
 
-  const transformButtonClass = !toggleTeamMateList ? styles.transform : "";
   const { teamMates, loading, error } = useTeamMates();
 
   if (loading) return <Spinner />;
   if (error) return <Error />;
 
+  const transformButtonClass = !toggleTeamMateList ? styles.transform : "";
   return (
     <div className={styles.teamMateList}>
       <div className={styles.collapse}>
@@ -48,10 +48,10 @@ export const TeamMateList = ({
         ? teamMates?.map((teamMate: User) => {
             return (
               <TeamMateDetail
-                teamMateId={teamMate.id}
+                teamMate={teamMate}
                 key={teamMate.id}
                 onChangeActiveTeamMate={onChangeActiveTeamMate}
-                isActive={teamMate.id === activeTeamMateId}
+                isActive={teamMate.id === activeTeamMate?.id}
               />
             );
           })

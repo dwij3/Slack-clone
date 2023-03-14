@@ -4,14 +4,9 @@ import styles from "./Message.module.css";
 //components
 import { Avatar } from "../../../../../../../avatar/Avatar";
 
-//hooks
-import { useTeamMates } from "../../../../../../../../hooks/useTeamMates";
-
 //type
-import {
-  Message as MessageType,
-  User,
-} from "../../../../../../../../types/types";
+import { Message as MessageType } from "../../../../../../../../types/types";
+import { useUser } from "../../../../../../../../hooks/useUser";
 
 type MessageProps = {
   message: MessageType;
@@ -19,27 +14,20 @@ type MessageProps = {
 };
 
 export const Message = ({ message, lastMessageRef }: MessageProps) => {
-  const ownerId: number | string = message?.from;
-
-  const { teamMates } = useTeamMates();
-  const owner = teamMates?.find((teamMate: User) => teamMate.id === ownerId);
-  const ownerImage = owner?.photo;
-  const ownerName = owner?.name;
-  const content: string = message?.content;
-  const currentTime = message?.date;
+  const { userInfo: user } = useUser();
 
   return (
     <div className={styles.message} ref={lastMessageRef}>
       <div className={styles.avatar}>
-        <Avatar src={ownerImage} height="36px" width="36px" />
+        <Avatar src={user?.photo} height="36px" width="36px" />
       </div>
 
       <div className={styles.messageDetails}>
         <div className={styles.userDetail}>
-          <span className={styles.userName}>{ownerName}</span>
-          <span className={styles.currentTime}>{currentTime}</span>
+          <span className={styles.userName}>{user?.name}</span>
+          <span className={styles.currentTime}>{message.date}</span>
         </div>
-        <div className={styles.content}>{content}</div>
+        <div className={styles.content}>{message.content}</div>
       </div>
     </div>
   );

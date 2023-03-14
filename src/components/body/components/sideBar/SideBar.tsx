@@ -6,14 +6,15 @@ import { TeamMateList } from "./components/teamMateList";
 import { SideBarHeader } from "./components/sideBarHeader/SideBarHeader";
 
 //type
+import { User } from "../../../../types/types";
 type SideBarProps = {
-  onChangeActiveTeamMate: (activeTeamMateId: number | string) => void;
-  activeTeamMateId: number | string;
+  onChangeActiveTeamMate: (activeTeamMate: User) => void;
+  activeTeamMate: User;
 };
 
 export const SideBar = ({
   onChangeActiveTeamMate,
-  activeTeamMateId,
+  activeTeamMate,
 }: SideBarProps) => {
   return (
     <div className={styles.sideBar}>
@@ -24,7 +25,7 @@ export const SideBar = ({
       />
       <TeamMateList
         onChangeActiveTeamMate={onChangeActiveTeamMate}
-        activeTeamMateId={activeTeamMateId}
+        activeTeamMate={activeTeamMate}
       />
     </div>
   );

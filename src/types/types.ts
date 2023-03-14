@@ -13,7 +13,7 @@ export type User = {
 export type Message = {
   id: number | string;
   from: number | string;
-  to: number | string;
+  to: number | string | undefined;
   date: string;
   content: string;
 };

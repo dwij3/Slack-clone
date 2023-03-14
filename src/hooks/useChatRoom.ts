@@ -9,8 +9,8 @@ import { ChatRoom, Action, Message } from "../types/types";
 import { useQuery } from "./useQuery";
 
 export const useChatRoom = (
-  userId: number | string,
-  teamMateId: number | string
+  userId: number | string | undefined,
+  teamMateId: number | string | undefined
 ) => {
   const [chatRoom, setChatRoom] = useState<ChatRoom | null>(null);
   const { data, loading, error } = useQuery(
@@ -29,17 +29,11 @@ export const useChatRoom = (
 
       // call backEnd
       if (!chatRoom) return;
-      const result = await fetch(
-        `http://localhost:3000/addMessage/${chatRoom.id}`,
-        {
-          method: "POST",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify(newMessage),
-        }
-      );
-
-      const resultInJson = await result.json();
-      console.log(resultInJson);
+      await fetch(`http://localhost:3000/addMessage/${chatRoom.id}`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(newMessage),
+      });
     },
     [chatRoom]
   );

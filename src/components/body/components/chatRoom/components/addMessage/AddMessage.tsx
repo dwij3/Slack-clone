@@ -19,24 +19,24 @@ import { Avatar } from "../../../../../avatar/Avatar";
 
 //type
 import { Action } from "../../../../../../types/types";
+import { User } from "../../../../../../types/types";
 type AddMessageProps = {
-  activeTeamMateId: number | string;
+  activeTeamMate: User | undefined;
   onAction: (action: Action) => void;
 };
 
-function formatAMPM(date = new Date()) {
-  var hours = date.getHours();
-  var minutes: number|string = date.getMinutes();
-  var ampm = hours >= 12 ? 'pm' : 'am';
+const formatAMPM = (date = new Date()) => {
+  let hours = date.getHours();
+  let minutes: number | string = date.getMinutes();
+  let ampm = hours >= 12 ? "pm" : "am";
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
-  var strTime = hours + ':' + minutes + ' ' + ampm;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  let strTime = hours + ":" + minutes + " " + ampm;
   return strTime;
 }
 
-
-export const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
+export const AddMessage = ({ activeTeamMate, onAction }: AddMessageProps) => {
   const userId = useUserId();
   const [message, setMessage] = useState("");
 
@@ -55,7 +55,7 @@ export const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
           newMessage: {
             id: crypto.randomUUID(),
             from: userId,
-            to: activeTeamMateId,
+            to: activeTeamMate?.id,
             content: message,
             date: formatAMPM(),
           },
@@ -63,7 +63,7 @@ export const AddMessage = ({ activeTeamMateId, onAction }: AddMessageProps) => {
         setMessage("");
       }
     },
-    [message, onAction, activeTeamMateId, userId]
+    [message, onAction, activeTeamMate, userId]
   );
 
   return (

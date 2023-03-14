@@ -7,40 +7,36 @@ import { Avatar } from "../../../../../../../avatar/Avatar";
 //hooks
 import { useCallback } from "react";
 import { useUserId } from "../../../../../../../../hooks/UserContext";
-import { useTeamMates } from "../../../../../../../../hooks/useTeamMates";
 
 //type
+import { User } from "../../../../../../../../types/types";
 type TeamMateDetailProps = {
-  teamMateId: number | string;
-  onChangeActiveTeamMate: (activeTeamMateId: number | string) => void;
+  teamMate: User;
+  onChangeActiveTeamMate: (activeTeamMateId: User) => void;
   isActive: boolean;
 };
 
 export const TeamMateDetail = ({
-  teamMateId,
+  teamMate,
   onChangeActiveTeamMate,
   isActive,
 }: TeamMateDetailProps) => {
-  const { teamMates } = useTeamMates();
-  const currentTeamMate = teamMates?.find(
-    (teamMate) => teamMate.id === teamMateId
-  );
-  const teamMateImage = currentTeamMate?.photo;
-  const teamMateName = currentTeamMate?.name;
   const handleClick = useCallback(
-    () => onChangeActiveTeamMate(teamMateId),
-    [onChangeActiveTeamMate, teamMateId]
+    () => onChangeActiveTeamMate(teamMate),
+    [onChangeActiveTeamMate, teamMate]
   );
-  const highlight = isActive ? styles.highlight : "";
+  const highlightClass = isActive ? styles.highlight : "";
   const userId = useUserId();
   return (
     <div
-      className={`${styles.teamMateDetail} ${highlight}`}
+      className={`${styles.teamMateDetail} ${highlightClass}`}
       onClick={handleClick}
     >
-      <Avatar src={teamMateImage} height="20px" width="20px" />
-      <span className={styles.teamMateName}>{teamMateName}</span>
-      {userId === teamMateId ? <span className={styles.user}>you</span> : null}
+      <Avatar src={teamMate.photo} height="20px" width="20px" />
+      <span className={styles.teamMateName}>{teamMate.name}</span>
+      {userId === teamMate?.id ? (
+        <span className={styles.user}>you</span>
+      ) : null}
     </div>
   );
 };

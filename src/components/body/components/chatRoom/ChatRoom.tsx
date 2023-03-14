@@ -8,35 +8,32 @@ import { AddMessage } from "./components/addMessage/AddMessage";
 import { Spinner } from "../../../spinner/Spinner";
 import { Error } from "../../../error/Error";
 
-//hooks
+//hooks and libs
 import { useChatRoom } from "../../../../hooks/useChatRoom";
 import { useUserId } from "../../../../hooks/UserContext";
 
 //type
+import { User } from "../../../../types/types";
 type ChatRoomProps = {
-  activeTeamMateId: number | string;
+  activeTeamMate: User;
 };
 
-export const ChatRoom = ({ activeTeamMateId }: ChatRoomProps) => {
+export const ChatRoom = ({ activeTeamMate }: ChatRoomProps) => {
   const userId = useUserId();
+
   const { chatRoom, onAction, loading, error } = useChatRoom(
     userId,
-    activeTeamMateId
+    activeTeamMate?.id
   );
 
   if (loading) return <Spinner />;
   if (error) return <Error />;
   return (
     <div className={styles.chatRoom}>
-      <TeamMateProfile activeTeamMateId={activeTeamMateId} />
-  
-      <ChatArea
-        activeTeamMateId={activeTeamMateId}
-        chat={chatRoom?.messageIds}
-      />
-      <AddMessage activeTeamMateId={activeTeamMateId} onAction={onAction} />
+      <TeamMateProfile activeTeamMate={activeTeamMate} />
 
-
+      <ChatArea activeTeamMate={activeTeamMate} chat={chatRoom?.messageIds} />
+      <AddMessage activeTeamMate={activeTeamMate} onAction={onAction} />
     </div>
   );
 };
