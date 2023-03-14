@@ -1,14 +1,14 @@
-//style
-import styles from "./Header.module.css";
-
 //components
 import { Avatar } from "../avatar/Avatar";
 
 //hooks
-import { useUser } from "../../hooks/useUser";
+import { useUserQuery } from "../../hooks/useUserQuery";
+
+//style
+import styles from "./Header.module.css";
 
 export const Header = () => {
-  const { userInfo } = useUser();
+  const { userInfo } = useUserQuery();
   const userImage = userInfo?.photo;
 
   return (

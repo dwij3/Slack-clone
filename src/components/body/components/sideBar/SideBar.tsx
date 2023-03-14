@@ -1,9 +1,9 @@
-//style
-import styles from "./SideBar.module.css";
-
 //components
 import { TeamMateList } from "./components/teamMateList";
 import { SideBarHeader } from "./components/sideBarHeader/SideBarHeader";
+
+//style
+import styles from "./SideBar.module.css";
 
 //type
 import { User } from "../../../../types/types";

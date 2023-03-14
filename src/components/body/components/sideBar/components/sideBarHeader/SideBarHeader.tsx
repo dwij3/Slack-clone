@@ -1,10 +1,9 @@
-//style
-import styles from "./SideBarHeader.module.css";
-
 //components
 import { Avatar } from "../../../../../avatar/Avatar";
 
-//type
+//style
+import styles from "./SideBarHeader.module.css";
+
 type SideBarHeaderProps = {
   companyLogo: string;
   height: string;

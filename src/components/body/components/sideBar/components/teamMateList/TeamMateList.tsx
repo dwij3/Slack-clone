@@ -1,5 +1,5 @@
-//style
-import styles from "./TeamMateList.module.css";
+//libs
+import { useCallback, useState } from "react";
 
 //component
 import { TeamMateDetail } from "./components/teamMateDetail";
@@ -7,11 +7,13 @@ import { Error } from "../../../../../error";
 import { Spinner } from "../../../../../spinner";
 
 //hooks
-import { useCallback, useState } from "react";
-import { useTeamMates } from "../../../../../../hooks/useTeamMates";
+import { useTeamMatesQuery } from "../../../../../../hooks/useTeamMatesQuery";
 
 //type
 import { User } from "../../../../../../types/types";
+
+//style
+import styles from "./TeamMateList.module.css";
 type TeamMateListProps = {
   onChangeActiveTeamMate: (activeTeamMate: User) => void;
   activeTeamMate: User;
@@ -26,9 +28,9 @@ export const TeamMateList = ({
     setToggleTeamMateList(!toggleTeamMateList);
   }, [toggleTeamMateList]);
 
-  const { teamMates, loading, error } = useTeamMates();
+  const { teamMates, loading, error } = useTeamMatesQuery();
 
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner size={80}/>;
   if (error) return <Error />;
 
   const transformButtonClass = !toggleTeamMateList ? styles.transform : "";

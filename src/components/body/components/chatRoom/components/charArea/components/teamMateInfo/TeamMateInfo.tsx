@@ -1,6 +1,3 @@
-//style
-import styles from "./TeamMateInfo.module.css";
-
 //components
 import { Avatar } from "../../../../../../../avatar/Avatar";
 
@@ -9,6 +6,10 @@ import { useUserId } from "../../../../../../../../hooks/UserContext";
 
 //type
 import { User } from "../../../../../../../../types/types";
+
+//style
+import styles from "./TeamMateInfo.module.css";
+
 type TeamMateInfoProps = {
   activeTeamMate: User;
 };

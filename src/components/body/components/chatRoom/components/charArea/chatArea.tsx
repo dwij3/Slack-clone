@@ -1,15 +1,16 @@
-//style
-import styles from "./chatArea.module.css";
+//libs
+import { useEffect, useRef } from "react";
 
 //components
 import { TeamMateInfo } from "./components/teamMateInfo/TeamMateInfo";
 import { Message } from "./components/message/Message";
 
-//hooks
-import { useEffect, useRef } from "react";
-
 //type
 import { Message as MessageType, User } from "../../../../../../types/types";
+
+//style
+import styles from "./chatArea.module.css";
+
 type ChatAreaProps = {
   activeTeamMate: User;
   chat: MessageType[] | undefined;

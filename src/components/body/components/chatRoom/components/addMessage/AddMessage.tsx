@@ -1,7 +1,4 @@
-//style
-import styles from "./AddMessage.module.css";
-
-//hooks
+//libs
 import {
   useState,
   useCallback,
@@ -9,10 +6,9 @@ import {
   KeyboardEvent,
   ChangeEvent,
 } from "react";
-import { useUserId } from "../../../../../../hooks/UserContext";
 
-//constant
-import { ACTION } from "../../../../../../constants";
+//hooks
+import { useUserId } from "../../../../../../hooks/UserContext";
 
 //components
 import { Avatar } from "../../../../../avatar/Avatar";
@@ -20,6 +16,13 @@ import { Avatar } from "../../../../../avatar/Avatar";
 //type
 import { Action } from "../../../../../../types/types";
 import { User } from "../../../../../../types/types";
+
+//constant
+import { ACTION } from "../../../../../../constants";
+
+//style
+import styles from "./AddMessage.module.css";
+
 type AddMessageProps = {
   activeTeamMate: User | undefined;
   onAction: (action: Action) => void;
@@ -34,7 +37,7 @@ const formatAMPM = (date = new Date()) => {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   let strTime = hours + ":" + minutes + " " + ampm;
   return strTime;
-}
+};
 
 export const AddMessage = ({ activeTeamMate, onAction }: AddMessageProps) => {
   const userId = useUserId();

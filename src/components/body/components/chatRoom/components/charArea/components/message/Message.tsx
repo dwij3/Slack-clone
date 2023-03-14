@@ -1,12 +1,14 @@
-//style
-import styles from "./Message.module.css";
-
 //components
 import { Avatar } from "../../../../../../../avatar/Avatar";
 
-//type
+//hooks
+import { useUserQuery } from "../../../../../../../../hooks/useUserQuery";
+
+//types
 import { Message as MessageType } from "../../../../../../../../types/types";
-import { useUser } from "../../../../../../../../hooks/useUser";
+
+//styles
+import styles from "./Message.module.css";
 
 type MessageProps = {
   message: MessageType;
@@ -14,7 +16,7 @@ type MessageProps = {
 };
 
 export const Message = ({ message, lastMessageRef }: MessageProps) => {
-  const { userInfo: user } = useUser();
+  const { userInfo: user } = useUserQuery();
 
   return (
     <div className={styles.message} ref={lastMessageRef}>

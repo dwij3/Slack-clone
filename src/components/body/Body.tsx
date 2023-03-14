@@ -1,19 +1,21 @@
-//style
-import styles from "./Body.module.css";
+//libs
+import { useCallback, useEffect, useState } from "react";
 
 //components
 import { SideBar } from "./components/sideBar/SideBar";
 import { ChatRoom } from "./components/chatRoom/ChatRoom";
 
-//hooks and libs
-import { useCallback, useEffect, useState } from "react";
+//hook
+import { useUserQuery } from "../../hooks/useUserQuery";
 
 //type
 import { User } from "../../types/types";
-import { useUser } from "../../hooks/useUser";
+
+//style
+import styles from "./Body.module.css";
 
 export const Body = () => {
-  const { userInfo } = useUser();
+  const { userInfo } = useUserQuery();
 
   //activeTeamMate has the information about teamMate user currently chatting with
   const [activeTeamMate, setActiveTeamMate] = useState<User>(userInfo);

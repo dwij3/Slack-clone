@@ -1,14 +1,13 @@
 //hooks
 import { useEffect, useState } from "react";
-import { urlValidator } from "../utils/urlValidator";
 
-export const useQuery = (url: string) => {
+export const useQuery = (url: string, isValidUrl: boolean) => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (urlValidator(url)) {
+    if (isValidUrl) {
       fetch(url)
         .then((response) => {
           if (!response.ok) {
@@ -29,7 +28,7 @@ export const useQuery = (url: string) => {
           setData(null);
         });
     }
-  }, [url]);
+  }, [isValidUrl, url]);
 
   return { data, loading, error };
 };

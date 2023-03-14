@@ -1,20 +1,22 @@
 //hooks
 import { useState, useCallback, useEffect } from "react";
 
-//constants
-import { ACTION } from "../constants";
-
 //type
 import { ChatRoom, Action, Message } from "../types/types";
 import { useQuery } from "./useQuery";
+
+//constants
+import { ACTION } from "../constants";
 
 export const useChatRoom = (
   userId: number | string | undefined,
   teamMateId: number | string | undefined
 ) => {
   const [chatRoom, setChatRoom] = useState<ChatRoom | null>(null);
+  const isValidUrl = !!(userId && teamMateId);
   const { data, loading, error } = useQuery(
-    `http://localhost:3000/getChatRoom/${userId}/${teamMateId}`
+    `http://localhost:3000/getChatRoom/${userId}/${teamMateId}`,
+    isValidUrl
   );
   useEffect(() => setChatRoom(data), [data]);
 

@@ -25,15 +25,23 @@ export const ChatRoom = ({ activeTeamMate }: ChatRoomProps) => {
     userId,
     activeTeamMate?.id
   );
-
-  if (loading) return <Spinner />;
-  if (error) return <Error />;
   return (
     <div className={styles.chatRoom}>
-      <TeamMateProfile activeTeamMate={activeTeamMate} />
+      {loading ? (
+        <Spinner size={100} />
+      ) : error ? (
+        <Error />
+      ) : (
+        <>
+          <TeamMateProfile activeTeamMate={activeTeamMate} />
 
-      <ChatArea activeTeamMate={activeTeamMate} chat={chatRoom?.messageIds} />
-      <AddMessage activeTeamMate={activeTeamMate} onAction={onAction} />
+          <ChatArea
+            activeTeamMate={activeTeamMate}
+            chat={chatRoom?.messageIds}
+          />
+          <AddMessage activeTeamMate={activeTeamMate} onAction={onAction} />
+        </>
+      )}
     </div>
   );
 };
