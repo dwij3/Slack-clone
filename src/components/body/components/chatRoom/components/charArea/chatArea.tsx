@@ -3,7 +3,8 @@ import { useEffect, useRef } from "react";
 
 //components
 import { TeamMateInfo } from "./components/teamMateInfo/TeamMateInfo";
-import { Message } from "./components/message/Message";
+// import { Message } from "./components/message/Message";
+import { MessageGroup } from "./components/messageGroup/MessageGroup";
 
 //type
 import { Message as MessageType, User } from "../../../../../../types/types";
@@ -16,8 +17,40 @@ type ChatAreaProps = {
   chat: MessageType[] | undefined;
 };
 
+const groupSameDayMessages = (
+  chat: MessageType[] | undefined,
+  dayArr: boolean[]
+) => {
+  if (!chat) return [];
+
+  const sameDayMessages: MessageType[][] = [];
+
+  let tempArr: MessageType[] = [];
+  dayArr.forEach((ele: boolean, idx: number) => {
+    if (ele && idx) {
+      if (tempArr) sameDayMessages.push(tempArr);
+      tempArr = [];
+    }
+    tempArr.push(chat?.[idx]);
+  });
+
+  if (tempArr && !dayArr[dayArr.length - 1]) sameDayMessages.push(tempArr);
+
+  return sameDayMessages;
+};
+
 export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
+  const dayMap = new Map();
+
+  const dayArr: boolean[] = [];
+  chat?.map((message: MessageType, idx: number) => {
+    dayArr[idx] = !dayMap.has(message?.day);
+    dayMap.set(message?.day, true);
+    return null;
+  });
+
+  const sameDayMessages = groupSameDayMessages(chat, dayArr);
 
   useEffect(() => {
     if (lastMessageRef.current) {
@@ -27,16 +60,16 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
   return (
     <div className={styles.displayMessage}>
       <TeamMateInfo activeTeamMate={activeTeamMate} />
-      {chat
-        ? chat.map((message: MessageType, idx: number) => (
-            <Message
-              key={message.id}
-              message={message}
-              lastMessageRef={idx === chat.length - 1 ? lastMessageRef : null}
-              activeTeamMate={activeTeamMate}
-            />
-          ))
-        : null}
+      {sameDayMessages.map((messageGroup, idx) => (
+        <MessageGroup
+          key={messageGroup[0].id}
+          groupOfMessages={messageGroup}
+          activeTeamMate={activeTeamMate}
+          lastMessageRef={
+            idx === sameDayMessages.length - 1 ? lastMessageRef : null
+          }
+        />
+      ))}
     </div>
   );
 };

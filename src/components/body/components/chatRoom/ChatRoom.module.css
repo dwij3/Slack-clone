@@ -4,4 +4,7 @@
   flex-direction: column;
   background-color: #1b1d21;
   border-left: 1px solid #2b2a2f;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
 }

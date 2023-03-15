@@ -1,5 +1,4 @@
 .displayMessage {
-  padding: 10px 10px 10px 20px;
   flex: 1;
   max-width: 100%;
   display: flex;
@@ -7,6 +6,9 @@
   overflow-y: scroll;
   height: 100px;
   position: relative;
+  overflow-x: hidden;
+  padding-bottom: 20px;
+  padding-top: 5px;
 }
 
 /* To make scrollbar hidden */

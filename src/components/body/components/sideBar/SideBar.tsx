@@ -8,7 +8,6 @@ import { User } from "../../../../types/types";
 //style
 import styles from "./SideBar.module.css";
 
-
 type SideBarProps = {
   onChangeActiveTeamMate: (activeTeamMate: User) => void;
   activeTeamMate: User;

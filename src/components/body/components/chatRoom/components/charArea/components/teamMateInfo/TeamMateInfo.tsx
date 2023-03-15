@@ -18,17 +18,17 @@ export const TeamMateInfo = ({ activeTeamMate }: TeamMateInfoProps) => {
   const userId = useUserId();
 
   return (
-    <div className={styles.friendDetail}>
+    <div className={styles.teamMateDetail}>
       <div className={styles.detail}>
         <Avatar src={activeTeamMate?.photo} height="55px" width="55px" />
-        <div className={styles.friendNameContainer}>
-          <span className={styles.friendName}>{activeTeamMate?.name}</span>
+        <div className={styles.teamMateNameContainer}>
+          <span className={styles.teamMateName}>{activeTeamMate?.name}</span>
         </div>
       </div>
       <div className={styles.commonMessage}>
         {userId === activeTeamMate?.id ? (
           <span>
-            This space is just for you. Jot down notes, list your to-dos, or
+            This space is just for you. Just take notes, list your to-dos, or
             keep links and files handy.
           </span>
         ) : (

@@ -15,6 +15,7 @@ export type Message = {
   from: string;
   to: string | undefined;
   date: string;
+  day: string;
   content: string;
 };
 

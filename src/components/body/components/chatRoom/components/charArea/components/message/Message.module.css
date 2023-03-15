@@ -1,6 +1,10 @@
 .message {
   display: flex;
-  padding: 10px 0;
+  padding: 10px 0 10px 20px;
+}
+
+.message:last-child {
+  padding-bottom: 0px;
 }
 
 .message:hover {

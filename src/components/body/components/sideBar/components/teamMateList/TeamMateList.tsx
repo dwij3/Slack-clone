@@ -33,7 +33,7 @@ export const TeamMateList = ({
 
   const { teamMates, loading, error } = useTeamMatesQuery(userId);
 
-  if (loading) return <Spinner size={80} color="#52bfd9"/>;
+  if (loading) return <Spinner size={80} color="#52bfd9" />;
   if (error) return <Error />;
 
   const transformButtonClass = !toggleTeamMateList ? styles.transform : "";

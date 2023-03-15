@@ -6,8 +6,7 @@ type SpinnerProps = {
   color: string;
 };
 
-
-export const Spinner = ({ size , color}: SpinnerProps) => {
+export const Spinner = ({ size, color }: SpinnerProps) => {
   return (
     <div style={{ width: "100px", margin: "auto", display: "block" }}>
       <ClipLoader color={color} size={size} />

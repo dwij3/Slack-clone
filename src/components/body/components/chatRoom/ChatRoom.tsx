@@ -28,12 +28,12 @@ export const ChatRoom = ({ activeTeamMate }: ChatRoomProps) => {
   );
   return (
     <div className={styles.chatRoom}>
-      {loading ? 
-        <Spinner size={100} color="#52bfd9"/>
-       : error ? 
+      {loading ? (
+        <Spinner size={100} color="#52bfd9" />
+      ) : error ? (
         <Error />
-       : 
-         <>
+      ) : (
+        <>
           <TeamMateProfile activeTeamMate={activeTeamMate} />
 
           <ChatArea
@@ -41,8 +41,8 @@ export const ChatRoom = ({ activeTeamMate }: ChatRoomProps) => {
             chat={chatRoom?.messageIds}
           />
           <AddMessage activeTeamMate={activeTeamMate} onAction={onAction} />
-         </> 
-      }
+        </>
+      )}
     </div>
   );
 };
