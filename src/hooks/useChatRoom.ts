@@ -24,15 +24,17 @@ export const useChatRoom = (
 
   const handleAddMessage = useCallback(
     async (newMessage: Message) => {
-      setChatRoom((chatRoom: any) => {
-        return {
+
+      if (!chatRoom) return;
+      const newChatRoom = {
           ...chatRoom,
           messageIds: [...chatRoom.messageIds, newMessage],
-        };
-      });
+      }
+      setChatRoom(() => newChatRoom);
+      
 
       // call backEnd
-      if (!chatRoom) return;
+      
       await fetch(`http://localhost:4000/addMessage/${chatRoom.id}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },

@@ -1,6 +1,6 @@
 .addMessage {
+  width: 100%;
   background-color: #1b1d21;
-  min-height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,6 @@
 .inputField {
   height: 95%;
   width: 90%;
-  /* border: 1px solid #565856; */
   border-radius: 15px;
   display: flex;
   flex-direction: row;

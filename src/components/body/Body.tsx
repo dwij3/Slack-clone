@@ -7,13 +7,13 @@ import { ChatRoom } from "./components/chatRoom/ChatRoom";
 
 //hook
 import { useUserQuery } from "../../hooks/useUserQuery";
+import { useUserId } from "../../hooks/UserContext";
 
 //type
 import { User } from "../../types/types";
 
 //style
 import styles from "./Body.module.css";
-import { useUserId } from "../../hooks/UserContext";
 
 export const Body = () => {
   const userId = useUserId();

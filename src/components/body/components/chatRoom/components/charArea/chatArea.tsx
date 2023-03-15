@@ -33,6 +33,7 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
               key={message.id}
               message={message}
               lastMessageRef={idx === chat.length - 1 ? lastMessageRef : null}
+              activeTeamMate = {activeTeamMate}
             />
           ))
         : null}
