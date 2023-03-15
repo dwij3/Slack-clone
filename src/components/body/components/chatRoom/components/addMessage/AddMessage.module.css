@@ -1,24 +1,24 @@
 .addMessage {
-  width: 100%;
+  width: 95%;
   background-color: #1b1d21;
   display: flex;
   justify-content: center;
+  margin:0 20px;
   align-items: center;
 }
 
 .inputField {
   height: 95%;
-  width: 90%;
+  width: 95%;
   border-radius: 15px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-input {
-  width: 90%;
-  height: auto;
+textarea {
+  width: 100%;
+  max-height: 500px;
   word-wrap: break-word;
   word-break: break-all;
   padding: 10px;
@@ -29,9 +29,10 @@ input {
   border: 3px solid #565856;
   border-radius: 10px;
   padding-right: 40px;
+  resize: none;
 }
 
-input:focus {
+textarea:focus {
   outline: none;
 }
 

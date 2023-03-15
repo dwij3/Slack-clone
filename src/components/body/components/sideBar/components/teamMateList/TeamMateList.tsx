@@ -8,13 +8,14 @@ import { Spinner } from "../../../../../spinner";
 
 //hooks
 import { useTeamMatesQuery } from "../../../../../../hooks/useTeamMatesQuery";
+import { useUserId } from "../../../../../../hooks/UserContext";
 
 //type
 import { User } from "../../../../../../types/types";
 
 //style
 import styles from "./TeamMateList.module.css";
-import { useUserId } from "../../../../../../hooks/UserContext";
+
 type TeamMateListProps = {
   onChangeActiveTeamMate: (activeTeamMate: User) => void;
   activeTeamMate: User;
@@ -32,7 +33,7 @@ export const TeamMateList = ({
 
   const { teamMates, loading, error } = useTeamMatesQuery(userId);
 
-  if (loading) return <Spinner size={80} />;
+  if (loading) return <Spinner size={80} color="#52bfd9"/>;
   if (error) return <Error />;
 
   const transformButtonClass = !toggleTeamMateList ? styles.transform : "";

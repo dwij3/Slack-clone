@@ -12,14 +12,14 @@ export type User = {
 
 export type Message = {
   id: string;
-  from:  string;
+  from: string;
   to: string | undefined;
   date: string;
   content: string;
 };
 
 export type ChatRoom = {
-  id:string;
+  id: string;
   chatRoomName: string;
   userIds: string[];
   messageIds: Message[];

@@ -5,7 +5,10 @@ import { Avatar } from "../../../../../../../avatar/Avatar";
 import { useUserQuery } from "../../../../../../../../hooks/useUserQuery";
 
 //types
-import { Message as MessageType , User} from "../../../../../../../../types/types";
+import {
+  Message as MessageType,
+  User,
+} from "../../../../../../../../types/types";
 
 //styles
 import styles from "./Message.module.css";
@@ -14,15 +17,18 @@ import { useUserId } from "../../../../../../../../hooks/UserContext";
 type MessageProps = {
   message: MessageType;
   lastMessageRef: React.RefObject<HTMLDivElement> | null;
-  activeTeamMate : User
+  activeTeamMate: User;
 };
 
-export const Message = ({ message, lastMessageRef ,activeTeamMate }: MessageProps) => {
+export const Message = ({
+  message,
+  lastMessageRef,
+  activeTeamMate,
+}: MessageProps) => {
   const userId = useUserId();
   const { userInfo: user } = useUserQuery(userId);
 
-  const owner = message.from===userId ? user : activeTeamMate;
-  
+  const owner = message.from === userId ? user : activeTeamMate;
 
   return (
     <div className={styles.message} ref={lastMessageRef}>

@@ -10,10 +10,7 @@ import { ChatRoom, Action, Message } from "../types/types";
 //constants
 import { ACTION } from "../constants";
 
-export const useChatRoom = (
-  userId:  string,
-  teamMateId:  string
-) => {
+export const useChatRoom = (userId: string, teamMateId: string) => {
   const [chatRoom, setChatRoom] = useState<ChatRoom | undefined>(undefined);
   const isValidUrl = !!(userId && teamMateId);
   const { data, loading, error } = useQuery(
@@ -24,17 +21,14 @@ export const useChatRoom = (
 
   const handleAddMessage = useCallback(
     async (newMessage: Message) => {
-
       if (!chatRoom) return;
       const newChatRoom = {
-          ...chatRoom,
-          messageIds: [...chatRoom.messageIds, newMessage],
-      }
-      setChatRoom(() => newChatRoom);
-      
+        ...chatRoom,
+        messageIds: [...chatRoom.messageIds, newMessage],
+      };
+      setChatRoom(newChatRoom);
 
-      // call backEnd
-      
+      // backEnd API call
       await fetch(`http://localhost:4000/addMessage/${chatRoom.id}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -52,7 +46,7 @@ export const useChatRoom = (
           break;
 
         default:
-          throw new Error("ACTION not included");
+          throw new Error("ACTION NOT INCLUDED:");
       }
     },
     [handleAddMessage]

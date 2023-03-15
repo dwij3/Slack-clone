@@ -2,11 +2,13 @@
 import { TeamMateList } from "./components/teamMateList";
 import { SideBarHeader } from "./components/sideBarHeader/SideBarHeader";
 
+//type
+import { User } from "../../../../types/types";
+
 //style
 import styles from "./SideBar.module.css";
 
-//type
-import { User } from "../../../../types/types";
+
 type SideBarProps = {
   onChangeActiveTeamMate: (activeTeamMate: User) => void;
   activeTeamMate: User;
