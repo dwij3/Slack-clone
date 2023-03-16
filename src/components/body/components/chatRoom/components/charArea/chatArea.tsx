@@ -33,9 +33,7 @@ const groupSameDayMessages = (
     }
     tempArr.push(chat?.[idx]);
   });
-
-  if (tempArr && !dayArr[dayArr.length - 1]) sameDayMessages.push(tempArr);
-
+  if(tempArr) sameDayMessages.push(tempArr);
   return sameDayMessages;
 };
 
@@ -57,19 +55,21 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
       lastMessageRef.current.scrollIntoView();
     }
   });
+
+  if(!chat) return <></>
   return (
     <div className={styles.displayMessage}>
       <TeamMateInfo activeTeamMate={activeTeamMate} />
-      {sameDayMessages.map((messageGroup, idx) => (
+      {sameDayMessages.length>0 ? sameDayMessages.map((messageGroup, idx) => (
         <MessageGroup
-          key={messageGroup[0].id}
+          key={crypto.randomUUID()}
           groupOfMessages={messageGroup}
           activeTeamMate={activeTeamMate}
           lastMessageRef={
-            idx === sameDayMessages.length - 1 ? lastMessageRef : null
+            idx === sameDayMessages?.length - 1 ? lastMessageRef : null
           }
         />
-      ))}
+      )) : null}
     </div>
   );
 };
