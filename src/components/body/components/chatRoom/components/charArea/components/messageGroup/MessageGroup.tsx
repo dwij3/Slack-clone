@@ -1,5 +1,5 @@
 //components
-import { StickyDay } from "../../../../../../../stickyDay";
+import { TimeStampBar } from "../../../../../../../timeStampBar";
 import { Message } from "../message/Message";
 
 //styles
@@ -22,7 +22,7 @@ export const MessageGroup = ({
 }: MessageGroupProps) => {
   return (
     <div className={styles.messageGroupContainer}>
-      <StickyDay day={groupOfMessages[0].day} />
+      <TimeStampBar day={groupOfMessages[0].day} />
       {groupOfMessages.map((message: MessageType, idx) => (
         <Message
           key={message.id}

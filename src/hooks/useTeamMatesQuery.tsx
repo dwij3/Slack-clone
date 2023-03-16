@@ -11,7 +11,7 @@ type UseTeamMatesQuery = {
 };
 
 export const useTeamMatesQuery = (userId: string): UseTeamMatesQuery => {
-  const isValidUrl = !!userId;
+  const isValidUrl = !userId;
   const {
     data: teamMates,
     loading,

@@ -1,13 +1,15 @@
 //hooks
 import { useEffect, useState } from "react";
 
-export const useQuery = (url: string, isValidUrl: boolean) => {
+// state : success , error , loading
+
+export const useQuery = (url: string, skip: boolean) => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (isValidUrl) {
+    if (skip) return;
       fetch(url)
         .then((response) => {
           if (!response.ok) {
@@ -27,8 +29,7 @@ export const useQuery = (url: string, isValidUrl: boolean) => {
           setError(true);
           setData(null);
         });
-    }
-  }, [isValidUrl, url]);
+  }, [skip, url]);
 
   return { data, loading, error };
 };

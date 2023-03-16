@@ -12,7 +12,7 @@ import { ACTION } from "../constants";
 
 export const useChatRoom = (userId: string, teamMateId: string) => {
   const [chatRoom, setChatRoom] = useState<ChatRoom | undefined>(undefined);
-  const isValidUrl = !!(userId && teamMateId);
+  const isValidUrl = !(userId && teamMateId);
   const { data, loading, error } = useQuery(
     `http://localhost:4000/getChatRoom/${userId}/${teamMateId}`,
     isValidUrl
@@ -30,7 +30,7 @@ export const useChatRoom = (userId: string, teamMateId: string) => {
 
       // backEnd API call
       await fetch(`http://localhost:4000/addMessage/${chatRoom.id}`, {
-        method: "POST",
+        method: "put",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newMessage),
       });

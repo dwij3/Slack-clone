@@ -15,7 +15,7 @@ export const Header = () => {
 
   return (
     <div className={styles.header}>
-      <Avatar src={userImage} height="30px" width="30px" />
+      <Avatar src={userImage} alt={userInfo?.name} height="30px" width="30px" />
     </div>
   );
 };

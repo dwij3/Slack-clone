@@ -1,10 +1,10 @@
-import styles from "./StickyDay.module.css";
+import styles from "./TimeStampBar.module.css";
 import { getDay } from "../../utils/getDate";
 
 type StickyDayProps = {
   day: string | undefined;
 };
-export const StickyDay = ({ day }: StickyDayProps) => {
+export const TimeStampBar = ({ day }: StickyDayProps) => {
   const today = getDay();
   return (
     <>
