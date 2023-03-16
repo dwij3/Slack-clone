@@ -33,7 +33,12 @@ export const Message = ({
   return (
     <div className={styles.message} ref={lastMessageRef}>
       <div className={styles.avatar}>
-        <Avatar src={owner?.photo} alt={owner?.name} height="36px" width="36px" />
+        <Avatar
+          src={owner?.photo}
+          alt={owner?.name}
+          height="36px"
+          width="36px"
+        />
       </div>
 
       <div className={styles.messageDetails}>

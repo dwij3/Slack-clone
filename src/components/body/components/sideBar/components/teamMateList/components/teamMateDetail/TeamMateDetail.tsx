@@ -34,7 +34,12 @@ export const TeamMateDetail = ({
       className={`${styles.teamMateDetail} ${highlightClass}`}
       onClick={handleClick}
     >
-      <Avatar src={teamMate.photo} alt={teamMate.name} height="20px" width="20px" />
+      <Avatar
+        src={teamMate.photo}
+        alt={teamMate.name}
+        height="20px"
+        width="20px"
+      />
       <span className={styles.teamMateName}>{teamMate.name}</span>
       {userId === teamMate?.id ? (
         <span className={styles.user}>you</span>

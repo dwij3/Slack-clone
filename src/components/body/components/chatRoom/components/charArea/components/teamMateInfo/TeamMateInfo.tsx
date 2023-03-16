@@ -20,7 +20,12 @@ export const TeamMateInfo = ({ activeTeamMate }: TeamMateInfoProps) => {
   return (
     <div className={styles.teamMateDetail}>
       <div className={styles.detail}>
-        <Avatar src={activeTeamMate?.photo} alt={activeTeamMate?.name} height="55px" width="55px" />
+        <Avatar
+          src={activeTeamMate?.photo}
+          alt={activeTeamMate?.name}
+          height="55px"
+          width="55px"
+        />
         <div className={styles.teamMateNameContainer}>
           <span className={styles.teamMateName}>{activeTeamMate?.name}</span>
         </div>

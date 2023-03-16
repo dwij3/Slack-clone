@@ -4,6 +4,9 @@ import { useQuery } from "./useQuery";
 //type
 import { User } from "../types/types";
 
+//utils
+import { fetchApi } from "../utils/fetchApi";
+
 type UseTeamMatesQuery = {
   teamMates: User[];
   loading: boolean;
@@ -16,6 +19,10 @@ export const useTeamMatesQuery = (userId: string): UseTeamMatesQuery => {
     data: teamMates,
     loading,
     error,
-  } = useQuery(`http://localhost:4000/getUserTeamMates/${userId}`, isValidUrl);
+  } = useQuery(
+    fetchApi,
+    `http://localhost:4000/getUserTeamMates/${userId}`,
+    isValidUrl
+  );
   return { teamMates, loading, error };
 };

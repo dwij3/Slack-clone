@@ -1,35 +1,49 @@
 //hooks
 import { useEffect, useState } from "react";
 
-// state : success , error , loading
+const STATUS = {
+  SUCCESS: "SUCCESS",
+  ERROR: "ERROR",
+  LOADING: "LOADING",
+};
 
-export const useQuery = (url: string, skip: boolean) => {
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
+type statusProps = {
+  state: string;
+  data: any;
+};
+
+export const useQuery = (
+  asyncFunc: (asyncFuncParams: string) => Promise<string>,
+  asyncFuncParams: string,
+  skip: boolean
+) => {
+  const [status, setStatus] = useState<statusProps>({
+    state: STATUS.LOADING,
+    data: null,
+  });
 
   useEffect(() => {
     if (skip) return;
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            setLoading(false);
-            setError(true);
-            return;
-          }
-          return response.json();
-        })
-        .then((json) => {
-          setLoading(false);
-          setError(false);
-          setData(json);
-        })
-        .catch(() => {
-          setLoading(false);
-          setError(true);
-          setData(null);
+    asyncFunc(asyncFuncParams)
+      .then((json) => {
+        setStatus((status) => {
+          return {
+            ...status,
+            state: STATUS.SUCCESS,
+            data: json,
+          };
         });
-  }, [skip, url]);
+      })
+      .catch(() => {
+        setStatus((status) => {
+          return { ...status, state: STATUS.ERROR };
+        });
+      });
+  }, [skip, asyncFuncParams, asyncFunc]);
 
-  return { data, loading, error };
+  return {
+    data: status.data,
+    loading: status.state === STATUS.LOADING,
+    error: status.state === STATUS.ERROR,
+  };
 };

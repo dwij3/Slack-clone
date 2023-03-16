@@ -17,7 +17,12 @@ export const SideBarHeader = ({
 }: SideBarHeaderProps) => {
   return (
     <div className={styles.sideBarHeader}>
-      <Avatar src={companyLogo} alt={"Sprinklr logo"} height={height} width={height} />
+      <Avatar
+        src={companyLogo}
+        alt={"Sprinklr logo"}
+        height={height}
+        width={height}
+      />
       <span className={styles.companyName}>{companyName}</span>
     </div>
   );
