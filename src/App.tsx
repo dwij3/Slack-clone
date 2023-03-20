@@ -1,6 +1,6 @@
 import "./App.css";
 import { Body } from "./components/body/Body";
-import { UserContextProvider } from "./hooks/UserContext";
+import { UserContextProvider } from "./components/useContext/UserContext";
 import { Header } from "./components/header";
 
 function App() {

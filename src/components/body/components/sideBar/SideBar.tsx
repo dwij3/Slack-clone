@@ -2,31 +2,27 @@
 import { TeamMateList } from "./components/teamMateList";
 import { SideBarHeader } from "./components/sideBarHeader/SideBarHeader";
 
-//type
-import { User } from "../../../../types/types";
-
 //style
 import styles from "./SideBar.module.css";
 
 type SideBarProps = {
-  onChangeActiveTeamMate: (activeTeamMate: User) => void;
-  activeTeamMate: User;
+  onChangeActiveTeamMateId: (activeTeamMateId: string) => void;
+  activeTeamMateId: string;
 };
 
 export const SideBar = ({
-  onChangeActiveTeamMate,
-  activeTeamMate,
+  onChangeActiveTeamMateId,
+  activeTeamMateId,
 }: SideBarProps) => {
   return (
     <div className={styles.sideBar}>
       <SideBarHeader
-        companyLogo="https://companieslogo.com/img/orig/CXM.D-7fde2bb4.png?t=1671948296"
-        height="20px"
-        companyName="Sprinklr"
+        imgSrc="https://companieslogo.com/img/orig/CXM.D-7fde2bb4.png?t=1671948296"
+        title="Sprinklr"
       />
       <TeamMateList
-        onChangeActiveTeamMate={onChangeActiveTeamMate}
-        activeTeamMate={activeTeamMate}
+        onChangeActiveTeamMateId={onChangeActiveTeamMateId}
+        activeTeamMateId={activeTeamMateId}
       />
     </div>
   );

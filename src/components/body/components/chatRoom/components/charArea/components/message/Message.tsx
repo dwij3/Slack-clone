@@ -12,7 +12,7 @@ import {
 
 //styles
 import styles from "./Message.module.css";
-import { useUserId } from "../../../../../../../../hooks/UserContext";
+import { useUserId } from "../../../../../../../useContext/UserContext";
 
 type MessageProps = {
   message: MessageType;

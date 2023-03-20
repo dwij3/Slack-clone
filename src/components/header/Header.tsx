@@ -3,7 +3,7 @@ import { Avatar } from "../avatar/Avatar";
 
 //hooks
 import { useUserQuery } from "../../hooks/useUserQuery";
-import { useUserId } from "../../hooks/UserContext";
+import { useUserId } from "../useContext/UserContext";
 
 //style
 import styles from "./Header.module.css";

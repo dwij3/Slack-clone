@@ -5,25 +5,15 @@ import { Avatar } from "../../../../../avatar/Avatar";
 import styles from "./SideBarHeader.module.css";
 
 type SideBarHeaderProps = {
-  companyLogo: string;
-  height: string;
-  companyName: string;
+  imgSrc: string;
+  title: string;
 };
 
-export const SideBarHeader = ({
-  companyLogo,
-  height,
-  companyName,
-}: SideBarHeaderProps) => {
+export const SideBarHeader = ({ imgSrc, title }: SideBarHeaderProps) => {
   return (
     <div className={styles.sideBarHeader}>
-      <Avatar
-        src={companyLogo}
-        alt={"Sprinklr logo"}
-        height={height}
-        width={height}
-      />
-      <span className={styles.companyName}>{companyName}</span>
+      <Avatar src={imgSrc} alt={"Sprinklr logo"} height="20px" width="20px" />
+      <span className={styles.companyName}>{title}</span>
     </div>
   );
 };

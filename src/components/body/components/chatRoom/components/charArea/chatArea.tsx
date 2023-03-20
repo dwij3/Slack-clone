@@ -1,5 +1,5 @@
 //libs
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 
 //components
 import { TeamMateInfo } from "./components/teamMateInfo/TeamMateInfo";
@@ -33,22 +33,26 @@ const groupSameDayMessages = (
     }
     tempArr.push(chat?.[idx]);
   });
-  if(tempArr) sameDayMessages.push(tempArr);
+  if (tempArr) sameDayMessages.push(tempArr);
   return sameDayMessages;
 };
 
 export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
-  const dayMap = new Map();
+  const dayMap = useMemo(() => new Map(), []);
 
-  const dayArr: boolean[] = [];
+  const dayArr: boolean[] = useMemo(() => [], []);
+
   chat?.map((message: MessageType, idx: number) => {
     dayArr[idx] = !dayMap.has(message?.day);
     dayMap.set(message?.day, true);
     return null;
   });
 
-  const sameDayMessages = groupSameDayMessages(chat, dayArr);
+  const sameDayMessages = useMemo(
+    () => groupSameDayMessages(chat, dayArr),
+    [chat, dayArr]
+  );
 
   useEffect(() => {
     if (lastMessageRef.current) {
@@ -56,20 +60,22 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
     }
   });
 
-  if(!chat) return <></>
+  if (!chat) return <></>;
   return (
     <div className={styles.displayMessage}>
       <TeamMateInfo activeTeamMate={activeTeamMate} />
-      {sameDayMessages.length>0 ? sameDayMessages.map((messageGroup, idx) => (
-        <MessageGroup
-          key={crypto.randomUUID()}
-          groupOfMessages={messageGroup}
-          activeTeamMate={activeTeamMate}
-          lastMessageRef={
-            idx === sameDayMessages?.length - 1 ? lastMessageRef : null
-          }
-        />
-      )) : null}
+      {sameDayMessages.length > 0
+        ? sameDayMessages.map((messageGroup, idx) => (
+            <MessageGroup
+              key={messageGroup[0].id}
+              groupOfMessages={messageGroup}
+              activeTeamMate={activeTeamMate}
+              lastMessageRef={
+                idx === sameDayMessages?.length - 1 ? lastMessageRef : null
+              }
+            />
+          ))
+        : null}
     </div>
   );
 };

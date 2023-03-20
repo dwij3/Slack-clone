@@ -1,42 +1,30 @@
 //libs
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 //components
 import { SideBar } from "./components/sideBar/SideBar";
 import { ChatRoom } from "./components/chatRoom/ChatRoom";
 
 //hook
-import { useUserQuery } from "../../hooks/useUserQuery";
-import { useUserId } from "../../hooks/UserContext";
+import { useUserId } from "../useContext/UserContext";
 
-//type
-import { User } from "../../types/types";
-
-//style
 import styles from "./Body.module.css";
 
 export const Body = () => {
   const userId = useUserId();
-  const { userInfo } = useUserQuery(userId);
+  const [activeTeamMateId, setActiveTeamMateId] = useState<string>(userId);
 
-  //activeTeamMate has the information about teamMate user currently chatting with
-  const [activeTeamMate, setActiveTeamMate] = useState<User>(userInfo);
-
-  useEffect(() => {
-    setActiveTeamMate(userInfo);
-  }, [userInfo]);
-
-  const handleClick = useCallback((activeTeamMate: User) => {
-    setActiveTeamMate(activeTeamMate);
+  const handleClick = useCallback((activeTeamMateId: string) => {
+    setActiveTeamMateId(activeTeamMateId);
   }, []);
 
   return (
     <div className={styles.body}>
       <SideBar
-        onChangeActiveTeamMate={handleClick}
-        activeTeamMate={activeTeamMate}
+        onChangeActiveTeamMateId={handleClick}
+        activeTeamMateId={activeTeamMateId}
       />
-      <ChatRoom activeTeamMate={activeTeamMate} />
+      <ChatRoom activeTeamMateId={activeTeamMateId} />
     </div>
   );
 };

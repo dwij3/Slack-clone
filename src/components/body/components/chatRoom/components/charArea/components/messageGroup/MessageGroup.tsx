@@ -20,27 +20,23 @@ export const MessageGroup = ({
   activeTeamMate,
   lastMessageRef,
 }: MessageGroupProps) => {
-  // if( === 0) return <></>
   return (
     <>
-    {
-      groupOfMessages.length ? 
-      <div className={styles.messageGroupContainer}>
-      <TimeStampBar day={groupOfMessages?.[0]?.day} />
-      {groupOfMessages.map((message: MessageType, idx) => (
-        <Message
-          key={message.id}
-          message={message}
-          lastMessageRef={
-            idx === groupOfMessages.length - 1 ? lastMessageRef : null
-          }
-          activeTeamMate={activeTeamMate}
-        />
-      ))}
-    </div> : 
-    null
-    }
+      {groupOfMessages.length ? (
+        <div className={styles.messageGroupContainer}>
+          <TimeStampBar day={groupOfMessages?.[0]?.day} />
+          {groupOfMessages.map((message: MessageType, idx) => (
+            <Message
+              key={message.id}
+              message={message}
+              lastMessageRef={
+                idx === groupOfMessages.length - 1 ? lastMessageRef : null
+              }
+              activeTeamMate={activeTeamMate}
+            />
+          ))}
+        </div>
+      ) : null}
     </>
-    
   );
 };

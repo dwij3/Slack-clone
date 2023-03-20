@@ -3,10 +3,10 @@
   align-items: center;
   border-radius: 5px;
   height: 28px;
-  padding: 0px 10px;
+  padding: 1px 6px;
 }
 
-.teamMateDetail:hover {
+.btn:hover {
   background-color: #27242c;
   cursor: pointer;
 }
@@ -29,4 +29,11 @@
 .user {
   font-size: 13px;
   color: #abacad;
+}
+
+.btn{
+  background: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0;
 }

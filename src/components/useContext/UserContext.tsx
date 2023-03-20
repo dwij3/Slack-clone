@@ -2,7 +2,7 @@
 import { createContext, useContext } from "react";
 
 //type
-import { UserContextProviderProps } from "../types/types";
+import { UserContextProviderProps } from "../../types/types";
 
 const UserContext = createContext<string | null>(null);
 

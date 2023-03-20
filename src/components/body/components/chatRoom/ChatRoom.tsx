@@ -6,38 +6,34 @@ import { ChatArea } from "./components/charArea";
 import { TeamMateProfile } from "./components/teamMateProfile";
 import { AddMessage } from "./components/addMessage/AddMessage";
 import { Spinner } from "../../../spinner/Spinner";
-import { Error } from "../../../error/Error";
+import { ErrorState } from "../../../error/ErrorState";
 
 //hooks and libs
 import { useChatRoom } from "../../../../hooks/useChatRoom";
-import { useUserId } from "../../../../hooks/UserContext";
-
-//type
-import { User } from "../../../../types/types";
+import { useUserId } from "../../../useContext/UserContext";
+import { useTeamMateQuery } from "../../../../hooks/useTeamMateQuery";
 
 type ChatRoomProps = {
-  activeTeamMate: User;
+  activeTeamMateId: string;
 };
 
-export const ChatRoom = ({ activeTeamMate }: ChatRoomProps) => {
+export const ChatRoom = ({ activeTeamMateId }: ChatRoomProps) => {
   const userId = useUserId();
+  const activeTeamMate = useTeamMateQuery(activeTeamMateId);
 
   const { chatRoom, onAction, loading, error } = useChatRoom(
-    userId, 
-    activeTeamMate?.id
+    userId,
+    activeTeamMateId
   );
 
-  if(error) return <Error />
-  if(loading) <Spinner size={100} color="#52bfd9" />
+  if (error) return <ErrorState />;
+  if (loading) <Spinner size={100} color="#52bfd9" />;
   return (
     <div className={styles.chatRoom}>
-          <TeamMateProfile activeTeamMate={activeTeamMate} />
+      <TeamMateProfile activeTeamMate={activeTeamMate} />
 
-          <ChatArea
-            activeTeamMate={activeTeamMate}
-            chat={chatRoom?.messageIds}
-          />
-          <AddMessage activeTeamMate={activeTeamMate} onAction={onAction} />
+      <ChatArea activeTeamMate={activeTeamMate} chat={chatRoom?.messages} />
+      <AddMessage activeTeamMate={activeTeamMate} onAction={onAction} />
     </div>
   );
 };

@@ -29,7 +29,7 @@ export const getDay = () => {
     ", " +
     date.getDate() +
     " " +
-    monthNames[date.getDay() - 1];
+    monthNames[date.getMonth()];
   return str;
 };
 

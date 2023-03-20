@@ -2,7 +2,7 @@
 import { Avatar } from "../../../../../../../avatar/Avatar";
 
 //hooks
-import { useUserId } from "../../../../../../../../hooks/UserContext";
+import { useUserId } from "../../../../../../../useContext/UserContext";
 
 //type
 import { User } from "../../../../../../../../types/types";

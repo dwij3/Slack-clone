@@ -9,7 +9,7 @@ import {
 } from "react";
 
 //hooks
-import { useUserId } from "../../../../../../hooks/UserContext";
+import { useUserId } from "../../../../../useContext/UserContext";
 
 //type
 import { Action, User } from "../../../../../../types/types";
@@ -50,7 +50,8 @@ export const AddMessage = ({ activeTeamMate, onAction }: AddMessageProps) => {
       autosize();
 
       if (
-        (("key" in e && e.key === "Enter") || e.type === "click") &&
+        ((e as KeyboardEvent<HTMLButtonElement>).key === "Enter" ||
+          e.type === "click") &&
         message.trim().length
       ) {
         if (href.current) href.current.style.cssText = "height: 17px";

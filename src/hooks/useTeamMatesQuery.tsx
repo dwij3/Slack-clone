@@ -10,7 +10,7 @@ import { fetchApi } from "../utils/fetchApi";
 type UseTeamMatesQuery = {
   teamMates: User[];
   loading: boolean;
-  error: boolean;
+  error: Error | null;
 };
 
 export const useTeamMatesQuery = (userId: string): UseTeamMatesQuery => {

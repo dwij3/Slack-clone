@@ -23,7 +23,7 @@ export type ChatRoom = {
   id: string;
   chatRoomName: string;
   userIds: string[];
-  messageIds: Message[];
+  messages: Message[];
   type: string;
 };
 

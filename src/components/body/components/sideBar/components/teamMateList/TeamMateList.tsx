@@ -1,14 +1,15 @@
 //libs
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 
 //component
 import { TeamMateDetail } from "./components/teamMateDetail";
-import { Error } from "../../../../../error";
+import { ErrorState } from "../../../../../error";
 import { Spinner } from "../../../../../spinner";
 
 //hooks
 import { useTeamMatesQuery } from "../../../../../../hooks/useTeamMatesQuery";
-import { useUserId } from "../../../../../../hooks/UserContext";
+import { useUserId } from "../../../../../useContext/UserContext";
+import { useToggle } from "../../../../../../hooks/useToggle";
 
 //type
 import { User } from "../../../../../../types/types";
@@ -17,26 +18,26 @@ import { User } from "../../../../../../types/types";
 import styles from "./TeamMateList.module.css";
 
 type TeamMateListProps = {
-  onChangeActiveTeamMate: (activeTeamMate: User) => void;
-  activeTeamMate: User;
+  onChangeActiveTeamMateId: (activeTeamMateId: string) => void;
+  activeTeamMateId: string;
 };
 
 export const TeamMateList = ({
-  onChangeActiveTeamMate,
-  activeTeamMate,
+  onChangeActiveTeamMateId,
+  activeTeamMateId,
 }: TeamMateListProps) => {
-  const [toggleTeamMateList, setToggleTeamMateList] = useState<boolean>(true);
+  const { isCollapsed: isTeamMateListCollapsed, toggleHandler } = useToggle();
   const handleClick = useCallback(() => {
-    setToggleTeamMateList(!toggleTeamMateList);
-  }, [toggleTeamMateList]);
+    toggleHandler(!isTeamMateListCollapsed);
+  }, [isTeamMateListCollapsed, toggleHandler]);
   const userId = useUserId();
 
   const { teamMates, loading, error } = useTeamMatesQuery(userId);
 
   if (loading) return <Spinner size={80} color="#52bfd9" />;
-  if (error) return <Error />;
+  if (error) return <ErrorState />;
 
-  const transformButtonClass = !toggleTeamMateList ? styles.transform : "";
+  const transformButtonClass = !isTeamMateListCollapsed ? styles.transform : "";
   return (
     <div className={styles.teamMateList}>
       <div className={styles.collapse}>
@@ -49,14 +50,14 @@ export const TeamMateList = ({
         <span className={styles.messageTitle}>Direct Messages</span>
       </div>
 
-      {toggleTeamMateList
+      {isTeamMateListCollapsed
         ? teamMates?.map((teamMate: User) => {
             return (
               <TeamMateDetail
                 teamMate={teamMate}
                 key={teamMate.id}
-                onChangeActiveTeamMate={onChangeActiveTeamMate}
-                isActive={teamMate.id === activeTeamMate?.id}
+                onChangeActiveTeamMateId={onChangeActiveTeamMateId}
+                isActive={teamMate.id === activeTeamMateId}
               />
             );
           })

@@ -9,35 +9,38 @@ import { useMutation } from "./useMutation";
 import { ChatRoom, Action, Message } from "../types/types";
 
 //constants
-import { ACTION } from "../constants";
+import { ACTION, STATUS } from "../constants";
 
 //utils
 import { fetchApi } from "../utils/fetchApi";
 
 export const useChatRoom = (userId: string, teamMateId: string) => {
-  const [chatRoom, setChatRoom] = useState<ChatRoom | undefined>(undefined);
   const isValidUrl = !(userId && teamMateId);
   const { data, loading, error } = useQuery(
     fetchApi,
     `http://localhost:4000/getChatRoom/${userId}/${teamMateId}`,
     isValidUrl
   );
+  const [chatRoom, setChatRoom] = useState<ChatRoom | undefined>(undefined);
   useEffect(() => setChatRoom(data), [data]);
-  const { mutate } = useMutation<Message>(
+  const { mutate, status } = useMutation<Message>(
     `http://localhost:4000/addMessage/${chatRoom?.id}`
   );
   const handleAddMessage = useCallback(
-    async (newMessage: Message) => {
+    (newMessage: Message) => {
       if (!chatRoom) return;
       const newChatRoom = {
         ...chatRoom,
-        messageIds: [...chatRoom.messageIds, newMessage],
+        messages: [...chatRoom.messages, newMessage],
       };
-      setChatRoom(newChatRoom);
 
       mutate(newMessage);
+      if (status === STATUS.SUCCESS) setChatRoom(newChatRoom);
+      else if (status === STATUS.ERROR) {
+        console.error("can't add data");
+      }
     },
-    [chatRoom, mutate]
+    [chatRoom, mutate, status]
   );
 
   const onAction = useCallback(
