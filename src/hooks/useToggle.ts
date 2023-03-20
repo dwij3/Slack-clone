@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
-export const useToggle = () => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+export const useToggle = (toggleValue:boolean) => {
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(toggleValue);
 
   const toggleHandler = useCallback((val: boolean) => {
     setIsCollapsed(val);

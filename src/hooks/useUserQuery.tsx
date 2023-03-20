@@ -2,7 +2,6 @@
 import { useQuery } from "./useQuery";
 //type
 import { User } from "../types/types";
-
 //utils
 import { fetchApi } from "../utils/fetchApi";
 

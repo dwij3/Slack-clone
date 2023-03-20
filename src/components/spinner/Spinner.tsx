@@ -1,6 +1,7 @@
 //libs
 import ClipLoader from "react-spinners/ClipLoader";
 
+import styles from './Spinner.module.css';
 type SpinnerProps = {
   size: number;
   color: string;
@@ -8,7 +9,7 @@ type SpinnerProps = {
 
 export const Spinner = ({ size, color }: SpinnerProps) => {
   return (
-    <div style={{ width: "100px", margin: "auto", display: "block" }}>
+    <div className={styles.spinner}>
       <ClipLoader color={color} size={size} />
     </div>
   );

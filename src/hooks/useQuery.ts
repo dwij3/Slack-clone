@@ -61,7 +61,6 @@ export const useQuery = (
           };
         });
       });
-    console.log("jkp");
     return () => {
       ignore = true;
     };
@@ -73,8 +72,8 @@ export const useQuery = (
         ...state,
         status: STATUS.SUCCESS,
         data: {
-          ...state.data,
-          messages: [...state.data.messages, newMessage],
+          ...state.data , 
+          messages: [...state.data.messages , newMessage]
         },
       };
     });

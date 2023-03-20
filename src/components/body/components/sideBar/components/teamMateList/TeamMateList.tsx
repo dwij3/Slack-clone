@@ -26,7 +26,7 @@ export const TeamMateList = ({
   onChangeActiveTeamMateId,
   activeTeamMateId,
 }: TeamMateListProps) => {
-  const { isCollapsed: isTeamMateListCollapsed, toggleHandler } = useToggle();
+  const { isCollapsed: isTeamMateListCollapsed, toggleHandler } = useToggle(true);
   const handleClick = useCallback(() => {
     toggleHandler(!isTeamMateListCollapsed);
   }, [isTeamMateListCollapsed, toggleHandler]);
