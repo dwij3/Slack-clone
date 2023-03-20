@@ -28,7 +28,7 @@ export const Message = ({
   const userId = useUserId();
   const { userInfo: user } = useUserQuery(userId);
 
-  const owner = message.from === userId ? user : activeTeamMate;
+  const owner = message?.from === userId ? user : activeTeamMate;
 
   return (
     <div className={styles.message} ref={lastMessageRef}>
@@ -44,9 +44,9 @@ export const Message = ({
       <div className={styles.messageDetails}>
         <div className={styles.userDetail}>
           <span className={styles.userName}>{owner?.name}</span>
-          <span className={styles.currentTime}>{message.date}</span>
+          <span className={styles.currentTime}>{message?.date}</span>
         </div>
-        <div className={styles.content}>{message.content}</div>
+        <div className={styles.content}>{message?.content}</div>
       </div>
     </div>
   );

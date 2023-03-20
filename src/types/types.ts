@@ -19,6 +19,14 @@ export type Message = {
   content: string;
 };
 
+export type NewMessage = {
+  from: string;
+  to: string | undefined;
+  date: string;
+  day: string;
+  content: string;
+};
+
 export type ChatRoom = {
   id: string;
   chatRoomName: string;
@@ -29,5 +37,5 @@ export type ChatRoom = {
 
 export type Action = {
   type: string;
-  newMessage: Message;
+  newMessage: NewMessage;
 };

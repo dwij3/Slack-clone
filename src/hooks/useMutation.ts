@@ -7,14 +7,20 @@ type statusProps = {
   error: Error | null;
 };
 
-export const useMutation = <TMutation>(url: string) => {
+export const useMutation = <TMutation>(url: string, config: any) => {
   const [state, setState] = useState<statusProps>({
-    status: STATUS.LOADING,
+    status: STATUS.IDLE,
     data: null,
     error: null,
   });
 
   const mutate = async (payload: TMutation) => {
+    setState((state) => {
+      return {
+        ...state,
+        status: STATUS.LOADING,
+      };
+    });
     await fetch(url, {
       method: "put",
       headers: { "Content-type": "application/json" },
@@ -33,11 +39,12 @@ export const useMutation = <TMutation>(url: string) => {
         }
         return response.json();
       })
-      .then((obj) => {
+      .then((response) => {
+        config?.onSuccess?.(response);
         setState((state) => {
           return {
             ...state,
-            data: obj,
+            data: response,
             status: STATUS.SUCCESS,
           };
         });
@@ -52,9 +59,10 @@ export const useMutation = <TMutation>(url: string) => {
         });
       });
   };
+
   return {
     mutate,
-    data: state.data,
+    newData: state.data,
     status: state.status,
     loading: state.status === STATUS.LOADING,
     error: state.status === STATUS.ERROR,

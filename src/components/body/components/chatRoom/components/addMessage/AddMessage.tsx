@@ -35,7 +35,7 @@ export const AddMessage = ({ activeTeamMate, onAction }: AddMessageProps) => {
   const [message, setMessage] = useState("");
 
   const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value !== "\n") setMessage(e.target.value);
+    setMessage(e.target.value);
   }, []);
 
   const autosize = useCallback(() => {
@@ -59,7 +59,6 @@ export const AddMessage = ({ activeTeamMate, onAction }: AddMessageProps) => {
         onAction({
           type: ACTION.ADD_MESSAGE,
           newMessage: {
-            id: crypto.randomUUID(),
             from: userId,
             to: activeTeamMate?.id,
             content: message,

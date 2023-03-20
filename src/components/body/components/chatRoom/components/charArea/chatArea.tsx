@@ -41,13 +41,15 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
   const dayMap = useMemo(() => new Map(), []);
 
-  const dayArr: boolean[] = useMemo(() => [], []);
-
-  chat?.map((message: MessageType, idx: number) => {
-    dayArr[idx] = !dayMap.has(message?.day);
-    dayMap.set(message?.day, true);
-    return null;
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dayArr: boolean[] = useMemo(() => [], [activeTeamMate, chat]);
+  useMemo(() => {
+    chat?.map((message: MessageType, idx: number) => {
+      dayArr[idx] = !dayMap.has(message?.day);
+      dayMap.set(message?.day, true);
+      return null;
+    });
+  }, [chat, dayArr, dayMap]);
 
   const sameDayMessages = useMemo(
     () => groupSameDayMessages(chat, dayArr),
@@ -61,6 +63,7 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
   });
 
   if (!chat) return <></>;
+  console.log(sameDayMessages);
   return (
     <div className={styles.displayMessage}>
       <TeamMateInfo activeTeamMate={activeTeamMate} />

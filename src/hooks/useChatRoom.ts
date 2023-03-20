@@ -6,7 +6,7 @@ import { useQuery } from "./useQuery";
 import { useMutation } from "./useMutation";
 
 //type
-import { ChatRoom, Action, Message } from "../types/types";
+import { Action, ChatRoom, NewMessage } from "../types/types";
 
 //constants
 import { ACTION, STATUS } from "../constants";
@@ -23,20 +23,25 @@ export const useChatRoom = (userId: string, teamMateId: string) => {
   );
   const [chatRoom, setChatRoom] = useState<ChatRoom | undefined>(undefined);
   useEffect(() => setChatRoom(data), [data]);
-  const { mutate, status } = useMutation<Message>(
-    `http://localhost:4000/addMessage/${chatRoom?.id}`
+
+  const onSuccess = useCallback((newMessage: any) => {
+    if (!chatRoom) return;
+    const newChatRoom = {
+      ...chatRoom,
+      messages: [...chatRoom.messages, newMessage],
+    };
+    setChatRoom(newChatRoom);
+  },[chatRoom]);
+
+  const { mutate, status } = useMutation<NewMessage>(
+    `http://localhost:4000/addMessage/${chatRoom?.id}`,
+    { onSuccess }
   );
   const handleAddMessage = useCallback(
-    (newMessage: Message) => {
+    async (newMessage: NewMessage) => {
       if (!chatRoom) return;
-      const newChatRoom = {
-        ...chatRoom,
-        messages: [...chatRoom.messages, newMessage],
-      };
-
-      mutate(newMessage);
-      if (status === STATUS.SUCCESS) setChatRoom(newChatRoom);
-      else if (status === STATUS.ERROR) {
+      await mutate(newMessage);
+      if (status === STATUS.ERROR) {
         console.error("can't add data");
       }
     },
