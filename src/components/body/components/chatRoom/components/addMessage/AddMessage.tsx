@@ -48,7 +48,6 @@ export const AddMessage = ({ activeTeamMate, onAction }: AddMessageProps) => {
   const handleAddMessage = useCallback(
     (e: MouseEvent | KeyboardEvent) => {
       autosize();
-
       if (
         ((e as KeyboardEvent<HTMLButtonElement>).key === "Enter" ||
           e.type === "click") &&
@@ -90,14 +89,14 @@ export const AddMessage = ({ activeTeamMate, onAction }: AddMessageProps) => {
           spellCheck={false}
         />
 
-        <span
+        <button
           onClick={handleAddMessage}
           className={`${styles.submitButton} ${
             message.length > 0 ? styles.transformColor : ""
           }`}
         >
           <span className="material-symbols-outlined">send</span>
-        </span>
+        </button>
       </div>
     </div>
   );

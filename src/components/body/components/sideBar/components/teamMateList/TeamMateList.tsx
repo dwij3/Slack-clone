@@ -3,7 +3,7 @@ import { useCallback } from "react";
 
 //component
 import { TeamMateDetail } from "./components/teamMateDetail";
-import { ErrorState } from "../../../../../error";
+import { ErrorState } from "../../../../../errorState";
 import { Spinner } from "../../../../../spinner";
 
 //hooks

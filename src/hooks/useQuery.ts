@@ -1,6 +1,7 @@
 //hooks
 import { useEffect, useState } from "react";
 import { STATUS } from "../constants";
+import { NewMessage } from "../types/types";
 
 type statusProps = {
   status: string;
@@ -30,7 +31,7 @@ export const useQuery = (
       };
     });
     asyncFunc(asyncFuncParams)
-      .then((response: any) => {
+      .then((response) => {
         if (!response.ok) {
           setState((state) => {
             return {
@@ -60,15 +61,29 @@ export const useQuery = (
           };
         });
       });
-
+    console.log("jkp");
     return () => {
       ignore = true;
     };
   }, [skip, asyncFuncParams, asyncFunc]);
 
+  const updateQuery = (newMessage: NewMessage) => {
+    setState((state: statusProps) => {
+      return {
+        ...state,
+        status: STATUS.SUCCESS,
+        data: {
+          ...state.data,
+          messages: [...state.data.messages, newMessage],
+        },
+      };
+    });
+  };
+
   return {
     data: state.data,
     loading: state.status === STATUS.LOADING,
     error: state.error,
+    updateQuery,
   };
 };

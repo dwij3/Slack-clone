@@ -6,12 +6,12 @@ import { ChatArea } from "./components/charArea";
 import { TeamMateProfile } from "./components/teamMateProfile";
 import { AddMessage } from "./components/addMessage/AddMessage";
 import { Spinner } from "../../../spinner/Spinner";
-import { ErrorState } from "../../../error/ErrorState";
+import { ErrorState } from "../../../errorState/ErrorState";
 
 //hooks and libs
 import { useChatRoom } from "../../../../hooks/useChatRoom";
 import { useUserId } from "../../../useContext/UserContext";
-import { useTeamMateQuery } from "../../../../hooks/useTeamMateQuery";
+import { useUserQuery } from "../../../../hooks/useUserQuery";
 
 type ChatRoomProps = {
   activeTeamMateId: string;
@@ -19,12 +19,14 @@ type ChatRoomProps = {
 
 export const ChatRoom = ({ activeTeamMateId }: ChatRoomProps) => {
   const userId = useUserId();
-  const activeTeamMate = useTeamMateQuery(activeTeamMateId);
+  const { userInfo: activeTeamMate } = useUserQuery(activeTeamMateId);
 
-  const { chatRoom, onAction, loading, error } = useChatRoom(
-    userId,
-    activeTeamMateId
-  );
+  const {
+    data: chatRoom,
+    onAction,
+    loading,
+    error,
+  } = useChatRoom(userId, activeTeamMateId);
 
   if (error) return <ErrorState />;
   if (loading) <Spinner size={100} color="#52bfd9" />;

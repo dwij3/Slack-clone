@@ -42,7 +42,7 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
   const dayMap = useMemo(() => new Map(), []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const dayArr: boolean[] = useMemo(() => [], [activeTeamMate, chat]);
+  const dayArr: boolean[] = [];
   useMemo(() => {
     chat?.map((message: MessageType, idx: number) => {
       dayArr[idx] = !dayMap.has(message?.day);
@@ -60,24 +60,25 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
     if (lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView();
     }
-  });
+  }, [chat]);
 
   if (!chat) return <></>;
-  console.log(sameDayMessages);
   return (
     <div className={styles.displayMessage}>
       <TeamMateInfo activeTeamMate={activeTeamMate} />
       {sameDayMessages.length > 0
-        ? sameDayMessages.map((messageGroup, idx) => (
-            <MessageGroup
-              key={messageGroup[0].id}
-              groupOfMessages={messageGroup}
-              activeTeamMate={activeTeamMate}
-              lastMessageRef={
-                idx === sameDayMessages?.length - 1 ? lastMessageRef : null
-              }
-            />
-          ))
+        ? sameDayMessages.map((messageGroup, idx) => {
+            return messageGroup.length > 0 ? (
+              <MessageGroup
+                key={messageGroup[0].id}
+                groupOfMessages={messageGroup}
+                activeTeamMate={activeTeamMate}
+                lastMessageRef={
+                  idx === sameDayMessages?.length - 1 ? lastMessageRef : null
+                }
+              />
+            ) : null;
+          })
         : null}
     </div>
   );

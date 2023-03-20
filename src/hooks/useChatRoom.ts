@@ -1,12 +1,12 @@
 //libs
-import { useState, useCallback, useEffect } from "react";
+import { useCallback } from "react";
 
 //hooks
 import { useQuery } from "./useQuery";
 import { useMutation } from "./useMutation";
 
 //type
-import { Action, ChatRoom, NewMessage } from "../types/types";
+import { Action, NewMessage } from "../types/types";
 
 //constants
 import { ACTION, STATUS } from "../constants";
@@ -16,36 +16,31 @@ import { fetchApi } from "../utils/fetchApi";
 
 export const useChatRoom = (userId: string, teamMateId: string) => {
   const isValidUrl = !(userId && teamMateId);
-  const { data, loading, error } = useQuery(
+  const { data, loading, error, updateQuery } = useQuery(
     fetchApi,
     `http://localhost:4000/getChatRoom/${userId}/${teamMateId}`,
     isValidUrl
   );
-  const [chatRoom, setChatRoom] = useState<ChatRoom | undefined>(undefined);
-  useEffect(() => setChatRoom(data), [data]);
 
-  const onSuccess = useCallback((newMessage: any) => {
-    if (!chatRoom) return;
-    const newChatRoom = {
-      ...chatRoom,
-      messages: [...chatRoom.messages, newMessage],
-    };
-    setChatRoom(newChatRoom);
-  },[chatRoom]);
+  const onSuccess = useCallback(
+    (newMessage: NewMessage) => {
+      updateQuery(newMessage);
+    },
+    [updateQuery]
+  );
 
   const { mutate, status } = useMutation<NewMessage>(
-    `http://localhost:4000/addMessage/${chatRoom?.id}`,
+    `http://localhost:4000/addMessage/${data?.id}`,
     { onSuccess }
   );
   const handleAddMessage = useCallback(
     async (newMessage: NewMessage) => {
-      if (!chatRoom) return;
       await mutate(newMessage);
       if (status === STATUS.ERROR) {
         console.error("can't add data");
       }
     },
-    [chatRoom, mutate, status]
+    [mutate, status]
   );
 
   const onAction = useCallback(
@@ -62,5 +57,5 @@ export const useChatRoom = (userId: string, teamMateId: string) => {
     [handleAddMessage]
   );
 
-  return { chatRoom, onAction, loading, error };
+  return { data, onAction, loading, error };
 };
