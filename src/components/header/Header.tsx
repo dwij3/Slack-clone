@@ -11,11 +11,10 @@ import styles from "./Header.module.css";
 export const Header = () => {
   const userId = useUserId();
   const { userInfo } = useUserQuery(userId);
-  const userImage = userInfo?.photo;
 
   return (
     <div className={styles.header}>
-      <Avatar src={userImage} alt={userInfo?.name} height="30px" width="30px" />
+      <Avatar src={userInfo?.photo} alt={userInfo?.name} height="30px" width="30px" />
     </div>
   );
 };

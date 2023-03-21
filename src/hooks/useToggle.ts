@@ -1,10 +1,11 @@
+//libs
 import { useCallback, useState } from "react";
 
-export const useToggle = (toggleValue:boolean) => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(toggleValue);
+export const useToggle = (toggleValue: boolean) => {
+  const [state, setState] = useState<boolean>(toggleValue);
 
   const toggleHandler = useCallback((val: boolean) => {
-    setIsCollapsed(val);
+    setState(val);
   }, []);
-  return { isCollapsed, toggleHandler };
+  return { state, toggleHandler };
 };

@@ -5,7 +5,7 @@ import { useCallback } from "react";
 import { useQuery } from "./useQuery";
 import { useMutation } from "./useMutation";
 
-//type
+//types
 import { Action, NewMessage } from "../types/types";
 
 //constants
@@ -24,9 +24,13 @@ export const useChatRoom = (userId: string, teamMateId: string) => {
 
   const onSuccess = useCallback(
     (newMessage: NewMessage) => {
-      updateQuery(newMessage);
+      const newData = {
+        ...data,
+        messages: [...data.messages , newMessage]
+      };
+      updateQuery(newData);
     },
-    [updateQuery]
+    [data, updateQuery]
   );
 
   const { mutate, status } = useMutation<NewMessage>(

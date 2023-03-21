@@ -21,11 +21,10 @@ import { ACTION } from "../../../../../../constants";
 import styles from "./AddMessage.module.css";
 
 //utils
-import { formatTime } from "../../../../../../utils/getDate";
-import { getDay } from "../../../../../../utils/getDate";
+import { formatTime , getDay } from "../../../../../../utils/messageUtils";
 
 type AddMessageProps = {
-  activeTeamMate: User | undefined;
+  activeTeamMate: User;
   onAction: (action: Action) => void;
 };
 
@@ -35,7 +34,7 @@ export const AddMessage = ({ activeTeamMate, onAction }: AddMessageProps) => {
   const [message, setMessage] = useState("");
 
   const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.target.value);
+    if (e.target.value !== "\n") setMessage(e.target.value);
   }, []);
 
   const autosize = useCallback(() => {

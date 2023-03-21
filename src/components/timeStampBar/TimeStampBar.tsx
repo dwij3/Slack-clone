@@ -1,5 +1,8 @@
+//utills
+import { getDay } from "../../utils/messageUtils";
+
+//styles
 import styles from "./TimeStampBar.module.css";
-import { getDay } from "../../utils/getDate";
 
 type StickyDayProps = {
   day: string | undefined;

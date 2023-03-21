@@ -1,7 +1,9 @@
 //libs
 import ClipLoader from "react-spinners/ClipLoader";
 
-import styles from './Spinner.module.css';
+//style
+import styles from "./Spinner.module.css";
+
 type SpinnerProps = {
   size: number;
   color: string;

@@ -26,18 +26,20 @@ export const TeamMateList = ({
   onChangeActiveTeamMateId,
   activeTeamMateId,
 }: TeamMateListProps) => {
-  const { isCollapsed: isTeamMateListCollapsed, toggleHandler } = useToggle(true);
-  const handleClick = useCallback(() => {
-    toggleHandler(!isTeamMateListCollapsed);
-  }, [isTeamMateListCollapsed, toggleHandler]);
+  const { state: isTeamMateListExpanded, toggleHandler } = useToggle(true);
+
   const userId = useUserId();
 
   const { teamMates, loading, error } = useTeamMatesQuery(userId);
 
+  const handleClick = useCallback(() => {
+    toggleHandler(!isTeamMateListExpanded);
+  }, [isTeamMateListExpanded, toggleHandler]);
+
+  const transformButtonClass = !isTeamMateListExpanded ? styles.transform : "";
+
   if (loading) return <Spinner size={80} color="#52bfd9" />;
   if (error) return <ErrorState />;
-
-  const transformButtonClass = !isTeamMateListCollapsed ? styles.transform : "";
   return (
     <div className={styles.teamMateList}>
       <div className={styles.collapse}>
@@ -50,7 +52,7 @@ export const TeamMateList = ({
         <span className={styles.messageTitle}>Direct Messages</span>
       </div>
 
-      {isTeamMateListCollapsed
+      {isTeamMateListExpanded
         ? teamMates?.map((teamMate: User) => {
             return (
               <TeamMateDetail

@@ -1,23 +1,25 @@
-//hooks
-import { useEffect, useState } from "react";
+//libs
+import { useCallback, useEffect, useState } from "react";
+
+//constants
 import { STATUS } from "../constants";
-import { NewMessage } from "../types/types";
+
 
 type statusProps = {
   status: string;
   data: any;
-  error: Error | null;
+  error: Error | undefined;
 };
 
-export const useQuery = (
+export const useQuery =(
   asyncFunc: (asyncFuncParams: string) => Promise<Response>,
   asyncFuncParams: string,
   skip: boolean
 ) => {
   const [state, setState] = useState<statusProps>({
     status: STATUS.IDLE,
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
   });
 
   useEffect(() => {
@@ -66,18 +68,15 @@ export const useQuery = (
     };
   }, [skip, asyncFuncParams, asyncFunc]);
 
-  const updateQuery = (newMessage: NewMessage) => {
-    setState((state: statusProps) => {
+  const updateQuery = useCallback((newData:any) => {
+    setState((state) => {
       return {
         ...state,
         status: STATUS.SUCCESS,
-        data: {
-          ...state.data , 
-          messages: [...state.data.messages , newMessage]
-        },
+        data: newData,
       };
     });
-  };
+  },[]);
 
   return {
     data: state.data,

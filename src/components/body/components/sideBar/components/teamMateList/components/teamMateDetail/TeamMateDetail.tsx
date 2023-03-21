@@ -1,13 +1,13 @@
 //libs
 import { useCallback } from "react";
 
-//component
+//components
 import { Avatar } from "../../../../../../../avatar/Avatar";
 
 //hooks
 import { useUserId } from "../../../../../../../useContext/UserContext";
 
-//type
+//types
 import { User } from "../../../../../../../../types/types";
 
 //style
@@ -27,10 +27,11 @@ export const TeamMateDetail = ({
     () => onChangeActiveTeamMateId(teamMate.id),
     [onChangeActiveTeamMateId, teamMate]
   );
-  const highlightClass = isActive ? styles.highlight : "";
   const userId = useUserId();
+  const highlightClass = isActive ? styles.highlight : "";
+  
   return (
-    <button onClick={handleClick} className={`${styles.btn} `}>
+    <button onClick={handleClick} className={`${styles.btn}`}>
       <div className={`${styles.teamMateDetail} ${highlightClass}`}>
         <Avatar
           src={teamMate.photo}

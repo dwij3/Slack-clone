@@ -8,3 +8,27 @@ export const STATUS = {
   LOADING: "LOADING",
   IDLE: "IDLE",
 };
+
+export const DAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];

@@ -5,7 +5,11 @@ import { User } from "../types/types";
 //utils
 import { fetchApi } from "../utils/fetchApi";
 
-type UseUserQuery = { userInfo: User; loading: boolean; error: Error | null };
+type UseUserQuery = {
+  userInfo: User;
+  loading: boolean;
+  error: Error | undefined;
+};
 
 export const useUserQuery = (userId: string): UseUserQuery => {
   const isValidUrl = !userId;

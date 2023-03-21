@@ -5,23 +5,24 @@ import { useCallback, useState } from "react";
 import { SideBar } from "./components/sideBar/SideBar";
 import { ChatRoom } from "./components/chatRoom/ChatRoom";
 
-//hook
+//hooks
 import { useUserId } from "../useContext/UserContext";
 
+//styles
 import styles from "./Body.module.css";
 
 export const Body = () => {
   const userId = useUserId();
   const [activeTeamMateId, setActiveTeamMateId] = useState<string>(userId);
 
-  const handleClick = useCallback((activeTeamMateId: string) => {
+  const handleChangeActiveTeamMateId = useCallback((activeTeamMateId: string) => {
     setActiveTeamMateId(activeTeamMateId);
   }, []);
 
   return (
     <div className={styles.body}>
       <SideBar
-        onChangeActiveTeamMateId={handleClick}
+        onChangeActiveTeamMateId={handleChangeActiveTeamMateId}
         activeTeamMateId={activeTeamMateId}
       />
       <ChatRoom activeTeamMateId={activeTeamMateId} />

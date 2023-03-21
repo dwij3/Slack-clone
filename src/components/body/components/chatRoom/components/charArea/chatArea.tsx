@@ -3,58 +3,28 @@ import { useEffect, useRef, useMemo } from "react";
 
 //components
 import { TeamMateInfo } from "./components/teamMateInfo/TeamMateInfo";
-// import { Message } from "./components/message/Message";
 import { MessageGroup } from "./components/messageGroup/MessageGroup";
 
 //type
-import { Message as MessageType, User } from "../../../../../../types/types";
+import { Message, User } from "../../../../../../types/types";
 
-//style
+//styles
 import styles from "./chatArea.module.css";
+
+//utils
+import { groupSameDayMessages } from "../../../../../../utils/messageUtils";
 
 type ChatAreaProps = {
   activeTeamMate: User;
-  chat: MessageType[] | undefined;
-};
-
-const groupSameDayMessages = (
-  chat: MessageType[] | undefined,
-  dayArr: boolean[]
-) => {
-  if (!chat) return [];
-
-  const sameDayMessages: MessageType[][] = [];
-
-  let tempArr: MessageType[] = [];
-  dayArr.forEach((ele: boolean, idx: number) => {
-    if (ele && idx) {
-      if (tempArr) sameDayMessages.push(tempArr);
-      tempArr = [];
-    }
-    tempArr.push(chat?.[idx]);
-  });
-  if (tempArr) sameDayMessages.push(tempArr);
-  return sameDayMessages;
+  chat: Message[] | undefined;
 };
 
 export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
-  const dayMap = useMemo(() => new Map(), []);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const dayArr: boolean[] = [];
-  useMemo(() => {
-    chat?.map((message: MessageType, idx: number) => {
-      dayArr[idx] = !dayMap.has(message?.day);
-      dayMap.set(message?.day, true);
-      return null;
-    });
-  }, [chat, dayArr, dayMap]);
-
-  const sameDayMessages = useMemo(
-    () => groupSameDayMessages(chat, dayArr),
-    [chat, dayArr]
-  );
+  const sameDayMessages = useMemo(() => {
+    return groupSameDayMessages(chat);
+  }, [chat]);
 
   useEffect(() => {
     if (lastMessageRef.current) {
@@ -62,24 +32,21 @@ export const ChatArea = ({ activeTeamMate, chat }: ChatAreaProps) => {
     }
   }, [chat]);
 
-  if (!chat) return <></>;
   return (
     <div className={styles.displayMessage}>
       <TeamMateInfo activeTeamMate={activeTeamMate} />
-      {sameDayMessages.length > 0
-        ? sameDayMessages.map((messageGroup, idx) => {
-            return messageGroup.length > 0 ? (
-              <MessageGroup
-                key={messageGroup[0].id}
-                groupOfMessages={messageGroup}
-                activeTeamMate={activeTeamMate}
-                lastMessageRef={
-                  idx === sameDayMessages?.length - 1 ? lastMessageRef : null
-                }
-              />
-            ) : null;
-          })
-        : null}
+      {sameDayMessages.map((messageGroup, idx) => {
+        return messageGroup.length > 0 ? (
+          <MessageGroup
+            key={messageGroup[0].id}
+            groupOfMessages={messageGroup}
+            activeTeamMate={activeTeamMate}
+            lastMessageRef={
+              idx === sameDayMessages?.length - 1 ? lastMessageRef : null
+            }
+          />
+        ) : null;
+      })}
     </div>
   );
 };

@@ -2,7 +2,6 @@
   box-sizing: border-box;
   background-color: #19171d;
   min-width: 350px;
-  /* border: 1 px solid #2b2a2f; */
   display: flex;
   flex-direction: column;
   border: 1px solid #2c2f34;
