@@ -1,4 +1,4 @@
-.avatar{
-    object-fit: cover;
-    border-radius: 3px;
+.avatar {
+  object-fit: contain;
+  border-radius: 6px;
 }

@@ -1,14 +1,16 @@
-import React from 'react';
-import './App.css';
-import SideBar  from './components/sideBar';
-import ChatRoom from './components/chatRoom';
+import "./App.css";
+import { Body } from "./components/body/Body";
+import { UserContextProvider } from "./components/useContext/UserContext";
+import { Header } from "./components/header";
 
 function App() {
   return (
-    <div className="App">
-      <SideBar />
-      <ChatRoom />
-    </div>
+    <UserContextProvider value={"1"}>
+      <div className="App">
+        <Header />
+        <Body />
+      </div>
+    </UserContextProvider>
   );
 }
 

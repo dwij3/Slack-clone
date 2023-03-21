@@ -1,0 +1,48 @@
+.teamMateList {
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #2b2a2f;
+  padding: 10px 8px;
+}
+
+.collapse {
+  height: 30px;
+  margin-bottom: 8px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.collapseIcon {
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border-radius: 6px;
+  color: #d1d2d3;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: matrix(0, 1, -1, 0, 0, 0);
+}
+
+.collapseIcon:hover {
+  cursor: pointer;
+  background-color: #27242c;
+}
+
+.messageTitle {
+  padding: 0 10px;
+}
+
+.messageTitle:hover {
+  background-color: #27242c;
+}
+
+.transform {
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}

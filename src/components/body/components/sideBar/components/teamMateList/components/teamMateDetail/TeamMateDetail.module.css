@@ -1,0 +1,39 @@
+.teamMateDetail {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  height: 28px;
+  padding: 1px 6px;
+}
+
+.btn:hover {
+  background-color: #27242c;
+  cursor: pointer;
+}
+
+.teamMateName {
+  font-size: 15px;
+  line-height: 28px;
+  padding: 1px 10px;
+  color: #abacad;
+}
+
+.highlight {
+  background-color: #1263a3;
+}
+
+.highlight:hover {
+  background-color: #1263a3;
+}
+
+.user {
+  font-size: 13px;
+  color: #abacad;
+}
+
+.btn {
+  background: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0;
+}

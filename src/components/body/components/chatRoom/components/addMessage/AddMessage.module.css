@@ -1,0 +1,69 @@
+.addMessage {
+  width: 100%;
+  background-color: #1b1d21;
+  margin-right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputField {
+  width: 100%;
+  border: 2px solid gray;
+  background-color: #1b1d21;
+  border-radius: 15px;
+  margin: 0px 17px 15px 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textarea {
+  width: 100%;
+  max-height: 500px;
+  word-wrap: break-word;
+  word-break: break-all;
+  margin: 10px;
+  background-color: #1b1d21;
+  outline: none;
+  border: none;
+  color: #d1d2d3;
+  font-size: 15px;
+  resize: none;
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.submitButton {
+  background-color: #1b1d21;
+  background: none;
+  display: block;
+  border: none;
+  border-radius: 5px;
+  padding: 0 2px;
+  margin-right: 3px;
+  color: gray;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  margin-right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transformColor {
+  background-color: #007a5a;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.sendButton {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 5px 0;
+}
